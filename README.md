@@ -8,5 +8,3 @@ kommer snart
 
 Bruk Balsamiq for mockups
 https://balsamiq.com/
-
-Tor test
