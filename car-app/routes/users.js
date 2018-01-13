@@ -3,13 +3,13 @@ const router = express.Router();
 
 //Register
 
-router.get('/register', (req, res, next) => {
+router.post('/register', (req, res, next) => {
     res.send('REGISTER');
 });
 
 //Authenticate
 
-router.get('/authenticate', (req, res, next) => {
+router.post('/authenticate', (req, res, next) => {
     res.send('AUTHENTICATE');
 });
 
@@ -19,10 +19,6 @@ router.get('/profile', (req, res, next) => {
     res.send('PROFILE');
 });
 
-//Validate
 
-router.get('/validate', (req, res, next) => {
-    res.send('VALIDATE');
-});
 
 module.exports = router;
