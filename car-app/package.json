@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node app",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -31,7 +31,7 @@
     "jsonwebtoken": "*",
     "body-parser": "*",
     "passport": "*",
-    "passport-jwt":"*"
+    "passport-jwt": "*"
   },
   "devDependencies": {
     "@angular/cli": "1.6.3",
