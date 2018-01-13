@@ -6,10 +6,11 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 
-mongoose.connect();
+mongoose.connect(config.database);
 mongoose.connection.on('connected', () => {
     console.log('connected to database '+ config.database);
 });
+
 const app = express();
 
 const users = require('./routes/users');
