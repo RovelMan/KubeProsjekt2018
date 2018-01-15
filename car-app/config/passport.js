@@ -8,8 +8,7 @@ module.exports = function(passport){
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
   opts.secretOrKey = config.secret;
   passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
-    console.log('Inne her')
-    User.getUserById(jwt_payloa.data._id, (err, user) => {
+    User.getUserById(jwt_payload._id, (err, user) => { //.data might be ".user._id" or "._id" or etc, check youtube
       if(err){
         return done(err, false);
       }
