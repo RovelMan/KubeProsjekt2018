@@ -16,6 +16,9 @@ import { MyProfileComponent } from './components/my-profile/my-profile.component
 import { NavComponent } from './components/nav/nav.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ValidateService } from './services/validate.service';
+
+
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
@@ -45,7 +48,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [ValidateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
