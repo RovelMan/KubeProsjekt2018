@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 
 import { AppComponent } from './app.component';
@@ -27,7 +27,9 @@ const appRoutes: Routes = [
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
   {path:'my-trips', component: MyTripsComponent, canActivate: [AuthGuard]}, //Add canActivate to protect paths
-  {path:'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]}
+  {path:'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]},
+  {path:'make-trip', component: MakeTripComponent},
+  {path:'search-trip', component: SearchTripsComponent}
 ]
 
 @NgModule({

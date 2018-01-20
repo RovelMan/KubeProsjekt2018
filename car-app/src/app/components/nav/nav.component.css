@@ -1,0 +1,19 @@
+.navbar {
+    padding: 20px;
+    margin-bottom: 0px;
+}
+
+.navbar-brand {
+    font-size: 30px;
+}
+
+#drop {
+    width: 300px;
+    padding: 20px;
+}
+
+@media screen and (max-width: 800px) {
+    #drop {
+        width: auto;
+    }
+}

@@ -1,0 +1,23 @@
+#homeTitle {
+    margin-top: 2%;
+}
+
+#tripForm {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+#tripDest {
+    width: 40%;
+}
+
+@media screen and (max-width: 800px) {
+    #tripForm {
+        flex-direction: column;
+    }
+
+    #tripDest {
+        width: auto;
+    }
+}
