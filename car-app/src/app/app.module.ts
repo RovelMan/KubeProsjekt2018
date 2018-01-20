@@ -22,13 +22,12 @@ import { AuthService } from './services/auth.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 
-
 const appRoutes: Routes = [
   {path:'', component: HomeComponent},
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
-  {path:'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}, //Add canActivate to protect paths
-  {path:'profile', component: MyProfileComponent, canActivate: [AuthGuard]}
+  {path:'my-trips', component: MyTripsComponent, canActivate: [AuthGuard]}, //Add canActivate to protect paths
+  {path:'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]}
 ]
 
 @NgModule({

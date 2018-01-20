@@ -46,7 +46,6 @@ export class AuthService {
   }
 
   loggedIn(){
-    console.log("Logged in");
     return tokenNotExpired('id_token');
   }
 

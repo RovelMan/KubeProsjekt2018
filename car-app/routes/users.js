@@ -4,8 +4,8 @@ const User = require('../models/user');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database')
-//Register
 
+//Register
 router.post('/register', (req, res, next) => {
     console.log("Foer let new user");
     let newUser = new User({
@@ -23,9 +23,7 @@ router.post('/register', (req, res, next) => {
     })
 });
 
-
 //Authenticate
-
 router.post('/authenticate', (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -35,7 +33,7 @@ router.post('/authenticate', (req, res, next) => {
       if(!user){
         return res.json({success: false, msg: 'User not found'});
       }
-  
+
       User.comparePassword(password, user.password, (err, isMatch) => {
         if(err) throw err;
         if(isMatch){
@@ -60,14 +58,9 @@ router.post('/authenticate', (req, res, next) => {
     });
   });
 
-//Profile
-
-
-// protect the profile page 
+//Profile; protect the profile page 
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     res.json({user: req.user})
 });
-
-
 
 module.exports = router;
