@@ -7,7 +7,6 @@ const config = require('../config/database')
 
 //Register
 router.post('/register', (req, res, next) => {
-    console.log("Foer let new user");
     let newUser = new User({
         name: req.body.name,
         email: req.body.email,
