@@ -30,6 +30,7 @@ const appRoutes: Routes = [
   {path:'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]},
   {path:'make-trip', component: MakeTripComponent},
   {path:'search-trip', component: SearchTripsComponent}
+  {path:'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
 ]
 
 @NgModule({
