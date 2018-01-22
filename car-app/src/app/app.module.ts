@@ -23,13 +23,13 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 
 const appRoutes: Routes = [
-  {path:'', component: HomeComponent},
+  {path:'', component: HomeComponent}, //må sørge for at alle sider blir ført hit
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
   {path:'my-trips', component: MyTripsComponent, canActivate: [AuthGuard]}, //Add canActivate to protect paths
   {path:'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]},
   {path:'make-trip', component: MakeTripComponent},
-  {path:'search-trip', component: SearchTripsComponent}
+  {path:'search-trip', component: SearchTripsComponent},
   {path:'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
 ]
 
