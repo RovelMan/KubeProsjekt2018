@@ -15,7 +15,6 @@ import { ThisTripComponent } from './components/this-trip/this-trip.component';
 import { MyProfileComponent } from './components/my-profile/my-profile.component';
 import { NavComponent } from './components/nav/nav.component';
 import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
@@ -29,9 +28,7 @@ const appRoutes: Routes = [
   {path:'my-trips', component: MyTripsComponent, canActivate: [AuthGuard]}, //Add canActivate to protect paths
   {path:'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]},
   {path:'make-trip', component: MakeTripComponent},
-  {path:'search-trip', component: SearchTripsComponent},
-  {path:'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}
-  
+  {path:'search-trip', component: SearchTripsComponent}
 ]
 
 @NgModule({
@@ -45,8 +42,7 @@ const appRoutes: Routes = [
     ThisTripComponent,
     MyProfileComponent,
     NavComponent,
-    LoginComponent,
-    DashboardComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
