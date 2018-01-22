@@ -12,6 +12,23 @@
     width: 40%;
 }
 
+#homeBody {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+#homeBodyTrip {
+    margin-right: 1%;
+    flex: 2;
+}
+
+#homeBodyLogin {
+    margin-left: 1%;
+    flex: 1;
+}
+
 @media screen and (max-width: 800px) {
     #tripForm {
         flex-direction: column;
