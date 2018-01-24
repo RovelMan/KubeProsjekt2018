@@ -1,7 +1,0 @@
-#flashMessage, #flashMessages.flash-messages, .flash-message {
-    display: none;
-}
-
-#flashMessage, #flashMessages.flash-messages, .flash-message:last-child {
-    display: block;
-}

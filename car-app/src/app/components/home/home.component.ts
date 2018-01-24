@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { mongoose } from 'mongoose';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 
@@ -17,9 +16,6 @@ export class HomeComponent implements OnInit {
   }
 
   showUsers(){
-  
-    
-
     this.authService.showUsers();
   }
 }
