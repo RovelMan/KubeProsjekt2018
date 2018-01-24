@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* To prevent flash messages to show up multiple times, which is unnecessary */
+/* Shows only the latest flash message */
+#flashMessageComponent, .flash-messages, .flash-message {
+    display: none;
+}
+#flashMessageComponent, .flash-messages, .flash-message:last-child {
+    display: block;
+}
