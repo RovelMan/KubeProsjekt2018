@@ -10,7 +10,7 @@ export class MakeTripComponent implements OnInit {
   fromDest: String;
   toDest: String;
   maxPassengers: Number;
-  date: String;
+  date: Date;
   carModel: String;
   carFuel: String;
   otherInfo: String;
@@ -18,8 +18,9 @@ export class MakeTripComponent implements OnInit {
   animals: Boolean;
   childSeat: Boolean;
   baggageSpace: Boolean;
-
-
+  pictureChoice: String;
+  pictureFile: File;
+  loadFile: File;
   constructor() { }
 
   ngOnInit() {
@@ -35,16 +36,28 @@ export class MakeTripComponent implements OnInit {
       carFuel: this.carFuel,
       otherInfo: this.otherInfo,
       animals: this.animals,
-      childSeat: this.childSeat
+      childSeat: this.childSeat,
+      pictureChoice: this.pictureChoice,
+      pictureFile: this.pictureFile
       //functionalities: 
     }
-    console.log(this.childSeat);
+    console.log(this.pictureFile.size); 
   }
 
  
   onClickSave() {
     console.log('Save');
   }
+
+  checked() {
+    return this.pictureChoice=="uploadFile";
+  }
+
+
+  
+}
+
+  
 
   
 
