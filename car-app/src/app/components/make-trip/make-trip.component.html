@@ -47,12 +47,43 @@
               <input type="text" [(ngModel)]="otherInfo" name="otherInfo">
             </div>
           </div>
+          
+          <div class="tripForm">
+
+            <label>Why don't you add a picture of yourself? This is optional and you can also choose your profile picture.</label><br>
+            <input type="radio" name="pictureChoice" value="uploadFile" [(ngModel)]="pictureChoice" name="pictureChoice"> Upload File<br>
+            <input type="radio" name="pictureChoice" value="profilePicture" [(ngModel)]="pictureChoice" name="pictureChoice"> I want to use my profile picture<br>
+            <input type="radio" name="pictureChoice" value="noPicture" [(ngModel)]="pictureChoice" name="pictureChoice">I don't want to submit a picture for the moment<br>
+          </div>
+          
+          
+
+          <!--
+          <div class="tripForm">
+            <div *ngIf="checked()">
+            
+              <input type="file" [(ngModel)]="pictureFile" name="pictureFile" accept="image/*">
+              
+            </div>
+          </div>
+
+          
+          <div>
+            <label>You have uploaded a file</label>
+            <img src="{{pictureFile}}" alt="Picture of yourself"> 
+          </div>
+        -->
+        
+          
+
 
           <div class="mainButtons">
             <button type="submit" class="btn btn-primary"  name="upload" value="Upload">Upload</button><br>
             <button type="button" class="btn btn-primary" (click)="onClickSave()" name="save" value="Save">Save</button><br>
             <input type="reset" value="Reset the form">
           </div>
+
+        
           
         </form>
       </div>
