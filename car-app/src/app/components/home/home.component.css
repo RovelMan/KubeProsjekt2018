@@ -2,19 +2,6 @@
     margin-top: 2%;
 }
 
-<<<<<<< HEAD
-=======
-.tripForm {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-}
-
-.form-group {
-    width: 40%;
-}
-
->>>>>>> abffce57e5f2b951658023edf8400b07ddb9a3bb
 #homeBody {
     display: flex;
     flex-direction: row;
