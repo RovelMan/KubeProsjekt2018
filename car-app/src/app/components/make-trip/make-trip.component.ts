@@ -41,7 +41,7 @@ export class MakeTripComponent implements OnInit {
       pictureFile: this.pictureFile
       //functionalities: 
     }
-    console.log(this.pictureFile.size); 
+    console.log('submit'); 
   }
 
  
@@ -61,4 +61,4 @@ export class MakeTripComponent implements OnInit {
 
   
 
-}
+
