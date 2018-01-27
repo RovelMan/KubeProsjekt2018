@@ -1,0 +1,27 @@
+
+<form id="search-trip-form">
+  <div id="search-trip-div">
+    <div class="sub-form">
+      <label>From destination</label>
+      <input type="search" class="form-control" placeholder="From">
+    </div>
+    <div class="sub-form">
+      <label>To destination</label>
+      <input type="search" class="form-control" placeholder="To">
+    </div>
+    <div class="sub-form">
+      <label>Number of passengers</label>
+      <input type="number" min="1" max="9" value="1"  class="form-control" >
+    </div>
+    <div class="sub-form">
+      <label>When?</label>
+      <input type="date" class="form-control">
+    </div>
+  </div>
+  <div>
+      <button type="submit" class="btn btn-primary">Search</button><br>
+      <a id="make-trip-link" [routerLink]="['/make-trip']">
+        Do you want to make your own trip? Click here
+      </a>
+  </div>
+</form>

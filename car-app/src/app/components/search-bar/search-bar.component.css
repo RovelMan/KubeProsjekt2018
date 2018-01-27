@@ -1,0 +1,77 @@
+/* CSS FOR HOME-PAGE */
+
+:host-context(.for-home) #search-trip-form {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+:host-context(.for-home) #search-trip-div {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+:host-context(.for-home) .sub-form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin-bottom: 1em;
+}
+
+:host-context(.for-home) .btn {
+    width: 40%;
+ }
+
+/* CSS FOR FIND-A-TRIP-PAGE */
+
+:host-context(.for-search) #search-trip-form {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+:host-context(.for-search) #search-trip-div {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+    
+:host-context(.for-search) .sub-form {
+   display: flex;
+   flex-direction: column;
+   width: 25%;
+}
+
+:host-context(.for-search) #make-trip-link {
+    display: none;
+ }
+
+ :host-context(.for-search) .btn {
+    margin-top: 1em;
+    width: 20%;
+ }
+
+ @media screen and (max-width: 1000px) {
+    :host-context(.for-search) #search-trip-div {
+        display: flex;
+        flex-direction: column;
+    }
+    :host-context(.for-search) #search-trip-form {
+        display: flex;
+        flex-direction: column;
+    }
+    :host-context(.for-search) .sub-form {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+    }
+    :host-context(.for-home) .sub-form {
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        margin-bottom: 1em;
+    }
+}
