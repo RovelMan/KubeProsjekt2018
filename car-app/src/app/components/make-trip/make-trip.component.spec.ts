@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MakeTripComponent } from './make-trip.component';
 
 describe('MakeTripComponent', () => {
