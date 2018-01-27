@@ -5,10 +5,40 @@
 </div>
 <div id="homeBody">
   <div id="homeBodyTrip">
+<<<<<<< HEAD
     <div class="jumbotron text-center">
       <h2>Where do you want to go?</h2>
       <app-search-bar class = "for-home"></app-search-bar>
     </div>
+=======
+      <div class="jumbotron text-center">
+        <h2>Where do you want to go?</h2>
+        <form>
+          <div class="tripForm">
+            <div  class="form-group">
+                <label>From destination</label>
+                <input type="search" class="form-control" placeholder="From">
+            </div>
+            <div  class="form-group">
+                <label>To destination</label>
+                <input type="search" class="form-control" placeholder="To">
+            </div>
+          </div>
+          <div class="tripForm">
+              <div class="form-group">
+                  <label>Number of passengers</label>
+                  <input type="number" min="1" max="9" value="1"  class="form-control" placeholder="1">
+              </div>
+              <div class="form-group">
+                  <label>When?</label>
+                  <input type="date" class="form-control">
+              </div>
+            </div>
+          <button type="submit" class="btn btn-primary">Search</button><br>
+          <a [routerLink]="['/make-trip']">Do you want to make your own trip? Click here</a>
+        </form>
+      </div>
+>>>>>>> abffce57e5f2b951658023edf8400b07ddb9a3bb
   </div>
   <div *ngIf="!authService.loggedIn()" id="homeBodyLogin">
     <div class="jumbotron text-center">
