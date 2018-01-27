@@ -54,10 +54,15 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule.forRoot(),
     AgmCoreModule.forRoot({
+<<<<<<< HEAD
       apiKey: 'AIzaSyDJ6bgMFGFSNMn9ygEip7Gwg9gPvOV42nY',
       libraries: ["places"]
     }),
     ReactiveFormsModule
+=======
+      apiKey: 'AIzaSyDSxAMpNTwI3G1EYTjTmQrSE_uHOP3gX_M'
+    })
+>>>>>>> adding google api
   ],
   providers: [ValidateService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
