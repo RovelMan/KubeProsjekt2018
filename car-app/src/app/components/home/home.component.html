@@ -3,35 +3,12 @@
   <p class="lead">Bringing travellers together...</p>
   <button type="button" class="btn btn-info" (click)="showUsers()">Show Users</button>
 </div>
-<div class="row" id="homeBody">
+<div id="homeBody">
   <div id="homeBodyTrip">
-      <div class="jumbotron text-center">
-        <h2>Where do you want to go?</h2>
-        <form>
-          <div id="tripForm">
-            <div id="tripDest" class="form-group">
-                <label>From destination</label>
-                <input type="search" class="form-control" placeholder="From">
-            </div>
-            <div id="tripDest" class="form-group">
-                <label>To destination</label>
-                <input type="search" class="form-control" placeholder="To">
-            </div>
-          </div>
-          <div id="tripForm">
-              <div id="tripDest" class="form-group">
-                  <label>Number of passengers</label>
-                  <input type="number" min="1" max="9" value="1"  class="form-control" placeholder="1">
-              </div>
-              <div id="tripDest" class="form-group">
-                  <label>When?</label>
-                  <input type="date" class="form-control">
-              </div>
-            </div>
-          <button type="submit" class="btn btn-primary">Search</button><br>
-          <a [routerLink]="['/make-trip']">Do you want to make your own trip? Click here</a>
-        </form>
-      </div>
+    <div class="jumbotron text-center">
+      <h2>Where do you want to go?</h2>
+      <app-search-bar class = "for-home"></app-search-bar>
+    </div>
   </div>
   <div *ngIf="!authService.loggedIn()" id="homeBodyLogin">
     <div class="jumbotron text-center">

@@ -2,16 +2,6 @@
     margin-top: 2%;
 }
 
-#tripForm {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-}
-
-#tripDest {
-    width: 40%;
-}
-
 #homeBody {
     display: flex;
     flex-direction: row;
@@ -29,12 +19,9 @@
     flex: 1;
 }
 
-@media screen and (max-width: 800px) {
-    #tripForm {
+@media screen and (max-width: 1000px) {
+    #homeBody {
+        display: flex;
         flex-direction: column;
-    }
-
-    #tripDest {
-        width: auto;
     }
 }
