@@ -3,3 +3,10 @@
     justify-content: space-around;
     flex-direction: row;
 }
+/* Makes "no file chosen" transparent. */
+input[type=file]{ 
+    color:transparent;
+}
+
+
+

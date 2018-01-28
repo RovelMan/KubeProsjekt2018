@@ -55,8 +55,6 @@ export class AuthService {
     localStorage.clear();
   }
 
-  showUsers() {
-    console.log('we are in this function')
-  }
+  
 }
 

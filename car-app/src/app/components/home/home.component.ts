@@ -16,7 +16,5 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  showUsers(){
-    this.authService.showUsers();
-  }
+ 
 }
