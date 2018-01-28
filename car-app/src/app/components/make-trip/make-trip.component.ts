@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service'
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
 
 
 
@@ -26,7 +27,8 @@ export class MakeTripComponent implements OnInit {
   
   constructor(
     private validateService:ValidateService, 
-    private flashMessage: FlashMessagesService
+    private flashMessage: FlashMessagesService,
+    private router: Router,
     ) 
     { }
 
@@ -54,8 +56,14 @@ export class MakeTripComponent implements OnInit {
 
     if (!this.validateService.validateMakeTrip(trip)) {
       this.flashMessage.show("Please fill in all fields or add a picture.", {cssClass: 'alert-danger', timeout: 2000});
-      return false
-    } 
+      return false;
+    } else {
+      this.flashMessage.show("Trip uploaded", {cssClass: 'alert-success', timeout: 2000});
+
+      this.router.navigate(['/my-trips']);
+      return true;
+    
+    }
   }
 
  
@@ -79,10 +87,7 @@ export class MakeTripComponent implements OnInit {
     reader.readAsDataURL(fileInput.target.files[0]);
   }
 
-  fileExists() {
-    const file = this.pictureFile;
-    return (file!=undefined);
-  }
+  
 
   
 }
