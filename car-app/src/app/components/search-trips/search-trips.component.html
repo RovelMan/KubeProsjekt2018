@@ -1,3 +1,6 @@
 <div class="jumbotron text-center">
   <app-search-bar class="for-search"></app-search-bar>
 </div>
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>

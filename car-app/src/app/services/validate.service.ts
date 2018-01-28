@@ -23,6 +23,7 @@ export class ValidateService {
     } else {
       return true;
     }
+<<<<<<< HEAD
   }
 
   //may be undefined even though it is there
@@ -46,4 +47,7 @@ export class ValidateService {
     }   
       
   }
+=======
+  }  
+>>>>>>> 075e58537b1cbef7070ee7bb68c297ad169d934b
 }
