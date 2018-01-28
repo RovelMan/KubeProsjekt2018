@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ValidateService } from '../../services/validate.service'
+import { FlashMessagesService } from 'angular2-flash-messages';
+
 
 
 @Component({
@@ -20,8 +23,12 @@ export class MakeTripComponent implements OnInit {
   baggageSpace: Boolean;
   pictureChoice: String;
   pictureFile: File;
-  loadFile: File;
-  constructor() { }
+  
+  constructor(
+    private validateService:ValidateService, 
+    private flashMessage: FlashMessagesService
+    ) 
+    { }
 
   ngOnInit() {
   }
@@ -35,13 +42,20 @@ export class MakeTripComponent implements OnInit {
       carModel: this.carModel,
       carFuel: this.carFuel,
       otherInfo: this.otherInfo,
+
       animals: this.animals,
       childSeat: this.childSeat,
+      baggageSpace: this.baggageSpace,
       pictureChoice: this.pictureChoice,
       pictureFile: this.pictureFile
       //functionalities: 
     }
-    console.log('submit'); 
+    console.log(this.pictureFile);
+
+    if (!this.validateService.validateMakeTrip(trip)) {
+      this.flashMessage.show("Please fill in all fields or add a picture.", {cssClass: 'alert-danger', timeout: 2000});
+      return false
+    } 
   }
 
  
@@ -53,6 +67,22 @@ export class MakeTripComponent implements OnInit {
     return this.pictureChoice=="uploadFile";
   }
 
+  onFileChange(fileInput: any){
+    this.pictureFile = fileInput.target.files[0];
+
+    let reader = new FileReader();
+
+    reader.onload = (e: any) => {
+        this.pictureFile = e.target.result;
+    }
+
+    reader.readAsDataURL(fileInput.target.files[0]);
+  }
+
+  fileExists() {
+    const file = this.pictureFile;
+    return (file!=undefined);
+  }
 
   
 }
