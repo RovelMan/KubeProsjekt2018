@@ -51,7 +51,7 @@
 
  :host-context(.for-search) .btn {
     margin-top: 1em;
-    width: 20%;
+    width: auto;
  }
 
  @media screen and (max-width: 1000px) {
@@ -79,4 +79,8 @@
 #map {
     height: 320px;
     margin-top: 1em;
+}
+
+input[type="date"] {
+    height: 47px;
 }
