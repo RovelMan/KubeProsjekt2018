@@ -27,16 +27,6 @@ export class ValidateService {
 
   //may be undefined even though it is there
   validateMakeTrip(trip) {
-    console.log(trip.fromDest)
-    console.log(trip.toDest)
-    console.log(trip.maxPassengers)
-    console.log(trip.date)
-    console.log(trip.carModel)
-    console.log(trip.carFuel)
-    console.log(trip.pictureChoice)
-    console.log('done')
-
-
 
     if (trip.fromDest==undefined || trip.toDest==undefined || trip.maxPassengers==undefined || trip.date==undefined || trip.carModel==undefined || trip.carFuel==undefined || trip.pictureChoice==undefined || (trip.pictureChoice=="uploadFile" && trip.pictureFile==undefined)) { 
       return false;

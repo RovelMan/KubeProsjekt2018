@@ -66,14 +66,55 @@ export class MakeTripComponent implements OnInit {
     }
   }
 
- 
-  onClickSave() {
-    console.log('Save');
+  validateFields() {
+    const trip = {
+      fromDest: this.fromDest,
+      toDest: this.toDest,
+      maxPassengers: this.maxPassengers,
+      date: this.date,
+      carModel: this.carModel,
+      carFuel: this.carFuel,
+      otherInfo: this.otherInfo,
+
+      animals: this.animals,
+      childSeat: this.childSeat,
+      baggageSpace: this.baggageSpace,
+      pictureChoice: this.pictureChoice,
+      pictureFile: this.pictureFile
+      //functionalities: 
+    }
+    
+
+    if (!this.validateService.validateMakeTrip(trip)) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
-  checked() {
-    return this.pictureChoice=="uploadFile";
+ 
+  onClickSave() {
+    const trip = {
+      fromDest: this.fromDest,
+      toDest: this.toDest,
+      maxPassengers: this.maxPassengers,
+      date: this.date,
+      carModel: this.carModel,
+      carFuel: this.carFuel,
+      otherInfo: this.otherInfo,
+
+      animals: this.animals,
+      childSeat: this.childSeat,
+      baggageSpace: this.baggageSpace,
+      pictureChoice: this.pictureChoice,
+      pictureFile: this.pictureFile
+      //functionalities: 
+    }
+    console.log('Save');
+    this.router.navigate(['/my-trips']);
   }
+
+  
 
   onFileChange(fileInput: any){
     this.pictureFile = fileInput.target.files[0];
