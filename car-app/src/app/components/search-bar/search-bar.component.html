@@ -1,12 +1,12 @@
-<form id="search-trip-form">
+<form id="search-trip-form" (click)="searchDestination()">
   <div id="search-trip-div">
     <div class="sub-form">
       <label>From destination</label>
-      <input type="search" class="form-control" placeholder="From">
+      <input type="text" class="form-control" placeholder="From" #searchFrom value=" ">
     </div>
     <div class="sub-form">
       <label>To destination</label>
-      <input type="search" class="form-control" placeholder="To">
+      <input type="text" class="form-control" placeholder="To" #searchTo value=" ">
     </div>
     <div class="sub-form">
       <label>Number of passengers</label>
@@ -24,3 +24,4 @@
     </a>
   </div>
 </form>
+<div id="map"></div>

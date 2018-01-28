@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-
+import { AgmCoreModule } from '@agm/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -51,7 +52,12 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDJ6bgMFGFSNMn9ygEip7Gwg9gPvOV42nY',
+      libraries: ["places"]
+    }),
+    ReactiveFormsModule
   ],
   providers: [ValidateService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
