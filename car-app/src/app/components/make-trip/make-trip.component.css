@@ -28,9 +28,14 @@ input[type=file]{
 .sub-form {
    display: flex;
    flex-direction: column;
-   width: 25%;
+   width: 40%;
 }
+
 .card {
-    padding: 15px;
+    padding: 10px;
+}
+
+.buttonDisabled {
+    opacity: 0.5;
 }
 
