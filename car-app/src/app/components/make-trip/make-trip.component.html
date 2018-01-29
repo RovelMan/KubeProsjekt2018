@@ -4,7 +4,7 @@
 
     <form (submit)="onClickSubmit()">
       
-      <div class="card border-primary mb-3" style="max-width: 100%;">
+      <div class="card border-primary mb-3" style="max-width: 100%;" id = "basics">
         <div class="card-header ">
           <legend >Basics</legend></div>
         <div class="search-trip-div">
@@ -39,10 +39,12 @@
             <input type="date" class="form-control" [(ngModel)]="date" name="date">
           </div>
         </div>
+        <a [routerLink]="['/make-trip']" fragment="car-specs" (click)="onAnchorClick()" class = "sub-form">Car specs</a>
+
       </div>
 
 
-      <div class="card border-primary mb-3" style="max-width: 100%;" *ngIf="toDest&&fromDest&&maxPassengers&&date">
+      <div class="card border-primary mb-3" style="max-width: 100%;" *ngIf="toDest&&fromDest&&maxPassengers&&date" id="car-specs">
         <div class="card-header"><legend>Car specs</legend></div>
         <div>
           <div>
@@ -71,10 +73,12 @@
             <br>
           </div>
         </div>
+        <a [routerLink]="['/make-trip']" fragment="extras" (click)="onAnchorClick()" class = "sub-form">Extras</a>
+
       </div>
 
 
-      <div class="card border-primary mb-3" style="max-width: 100%;" *ngIf="toDest&&fromDest&&maxPassengers&&date&&carModel&&carFuel">
+      <div class="card border-primary mb-3" style="max-width: 100%;" *ngIf="toDest&&fromDest&&maxPassengers&&date&&carModel&&carFuel" id = "extras">
         <div>
           <div class="card-header"><legend>Extras</legend></div>
           <label>Why don't you add a picture of yourself? This is optional and you can also choose your profile picture.</label>
@@ -135,4 +139,7 @@
 
     </div>
   </div>
+</div>
+<div class="card border-primary mb-3" style="max-width: 100%;">
+<a [routerLink]="['/make-trip']" fragment="basics" (click)="onAnchorClick()" class = "sub-form">Basics</a>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service'
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -29,6 +30,8 @@ export class MakeTripComponent implements OnInit {
     private validateService:ValidateService, 
     private flashMessage: FlashMessagesService,
     private router: Router,
+    private route: ActivatedRoute,
+    
     ) 
     { }
 
@@ -127,6 +130,17 @@ export class MakeTripComponent implements OnInit {
 
     reader.readAsDataURL(fileInput.target.files[0]);
   }
+
+  
+
+  onAnchorClick ( ) {
+    this.route.fragment.subscribe ( f => {
+      const element = document.querySelector ( "#" + f )
+      if ( element ) element.scrollIntoView ( element )
+    });
+  }
+  
+
 
   
 

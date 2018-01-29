@@ -23,6 +23,10 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
+
+
+
+
 const appRoutes: Routes = [
   {path:'', component: HomeComponent}, //må sørge for at alle sider blir ført hit
   {path:'register', component: RegisterComponent},
