@@ -4,44 +4,7 @@
   <div >
     <form (submit)="onClickSubmit()"   >
 
-      <div class="card border-primary mb-3" style="max-width: 100%;" id="basics" >
-        <div class="card-header ">
-          <legend>Basics</legend>
-        </div>
-        <div class="search-trip-div">
-          <div class="sub-group">
-            <label>From destination</label>
-            <input type="search" class="form-control" placeholder="From" [(ngModel)]="fromDest" name="fromDest">
-          </div>
-          <div class="sub-group">
-            <label>To destination</label>
-            <input type="search" class="form-control" placeholder="To" [(ngModel)]="toDest" name="toDest">
-          </div>
-        </div>
-        <div class="search-trip-div">
-          <div class="sub-group">
-            <label>Maximum passengers</label>
-            <select class="form-control" placeholder="1" [(ngModel)]="maxPassengers" name="maxPassengers">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-
-            </select>
-
-          </div>
-          <div class="sub-group" >
-            <label>When?</label>
-            <input type="date" class="form-control" [(ngModel)]="date" name="date">
-          </div>
-        </div>
-
-      </div>
+      <app-search-bar></app-search-bar>
 
 
       <div class="card border-primary mb-3" style="max-width: 100%;" *ngIf="toDest&&fromDest&&maxPassengers&&date" id="car-specs">
