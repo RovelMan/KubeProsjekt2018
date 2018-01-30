@@ -1,3 +1,21 @@
 .jumbotron {
     margin-top: 2%;
 }
+<<<<<<< HEAD
+=======
+
+.form-group {
+    width: 40%;
+}
+
+:host ::ng-deep h2 {
+    background-color: red;
+}
+
+*/
+
+
+agm-map {
+    height: 600px;
+}
+>>>>>>> 8b7c1f970d4a9cd7e2ef4d46cbf0a9c3cab676ef
