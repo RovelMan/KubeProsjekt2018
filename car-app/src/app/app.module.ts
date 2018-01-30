@@ -4,13 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { ReactiveFormsModule } from '@angular/forms';
-=======
->>>>>>> deleting directive
-=======
->>>>>>> 8b7c1f970d4a9cd7e2ef4d46cbf0a9c3cab676ef
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -66,20 +60,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule.forRoot(),
     AgmCoreModule.forRoot({
-<<<<<<< HEAD
-<<<<<<< HEAD
       apiKey: 'AIzaSyDJ6bgMFGFSNMn9ygEip7Gwg9gPvOV42nY',
       libraries: ["places"]
     }),
     ReactiveFormsModule
-=======
-      apiKey: 'AIzaSyDSxAMpNTwI3G1EYTjTmQrSE_uHOP3gX_M'
-    })
->>>>>>> adding google api
-=======
-      apiKey: 'AIzaSyDSxAMpNTwI3G1EYTjTmQrSE_uHOP3gX_M'
-    })
->>>>>>> 8b7c1f970d4a9cd7e2ef4d46cbf0a9c3cab676ef
   ],
   providers: [ValidateService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
