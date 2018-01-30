@@ -36,6 +36,6 @@ input[type=file]{
 }
 
 .buttonDisabled {
-    opacity: 0.5;
+    display:none
 }
 

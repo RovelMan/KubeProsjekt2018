@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
+<<<<<<< HEAD
 import { ReactiveFormsModule } from '@angular/forms';
+=======
+>>>>>>> deleting directive
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -49,7 +52,9 @@ const appRoutes: Routes = [
     MyProfileComponent,
     NavComponent,
     LoginComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
