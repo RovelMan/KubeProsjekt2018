@@ -22,7 +22,11 @@
 
 :host-context(.for-home) .btn {
     width: 40%;
- }
+}
+
+:host-context(.for-home) #map {
+    display: none;
+}
 
 /* CSS FOR FIND-A-TRIP-PAGE */
 
