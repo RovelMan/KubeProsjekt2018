@@ -1,12 +1,12 @@
-<form id="search-trip-form">
+<form id="search-trip-form" (submit)="searchDestination(searchFrom.value, searchTo.value)" onsubmit="return false">
   <div id="search-trip-div">
     <div class="sub-form">
       <label>From destination</label>
-      <input type="search" class="form-control" placeholder="From">
+      <input type="text" class="form-control" placeholder="From" #searchFrom>
     </div>
     <div class="sub-form">
       <label>To destination</label>
-      <input type="search" class="form-control" placeholder="To">
+      <input type="text" class="form-control" placeholder="To" #searchTo>
     </div>
     <div class="sub-form">
       <label>Number of passengers</label>
@@ -18,9 +18,10 @@
     </div>
   </div>
   <div>
-    <button type="submit" class="btn btn-primary">Search</button><br>
+    <input type="submit" class="btn btn-primary" value="Search"><br>
     <a id="make-trip-link" [routerLink]="['/make-trip']">
       Do you want to make your own trip? Click here
     </a>
   </div>
 </form>
+<div id="map"></div>
