@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { MyTripsComponent } from './components/my-trips/my-trips.component';
@@ -49,7 +48,9 @@ const appRoutes: Routes = [
     MyProfileComponent,
     NavComponent,
     LoginComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    
+    
   ],
   imports: [
     BrowserModule,

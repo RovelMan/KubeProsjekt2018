@@ -6,6 +6,10 @@ import { ActivatedRoute } from '@angular/router';
 
 
 
+
+
+
+
 @Component({
   selector: 'app-make-trip',
   templateUrl: './make-trip.component.html',
@@ -87,6 +91,7 @@ export class MakeTripComponent implements OnInit {
       //functionalities: 
     }
     
+    
 
     if (!this.validateService.validateMakeTrip(trip)) {
       return false;
@@ -94,6 +99,7 @@ export class MakeTripComponent implements OnInit {
       return true;
     }
   }
+  
 
  
   onClickSave() {
@@ -114,9 +120,10 @@ export class MakeTripComponent implements OnInit {
       //functionalities: 
     }
     console.log('Save');
-    this.router.navigate(['/my-trips']);
+    this.router.navigate(['/my-trips']); //Some problems with navigation because of auto scroll
   }
 
+  
   
 
   onFileChange(fileInput: any){
@@ -136,10 +143,46 @@ export class MakeTripComponent implements OnInit {
   onAnchorClick ( ) {
     this.route.fragment.subscribe ( f => {
       const element = document.querySelector ( "#" + f )
-      if ( element ) element.scrollIntoView ( element )
+      if ( element ) element.scrollIntoView()
     });
   }
   
+  changePath() {
+    const trip = {
+      fromDest: this.fromDest,
+      toDest: this.toDest,
+      maxPassengers: this.maxPassengers,
+      date: this.date,
+      carModel: this.carModel,
+      carFuel: this.carFuel,
+      otherInfo: this.otherInfo,
+
+      animals: this.animals,
+      childSeat: this.childSeat,
+      baggageSpace: this.baggageSpace,
+      pictureChoice: this.pictureChoice,
+      pictureFile: this.pictureFile
+    }
+    console.log('before if')
+    if ((trip.fromDest!=undefined && trip.toDest!=undefined && trip.maxPassengers!=undefined && trip.date!=undefined) && (trip.carModel==undefined || trip.carFuel==undefined) && (trip.pictureChoice==undefined || (trip.pictureChoice=="uploadFile" && trip.pictureFile==undefined)) ) { 
+      
+      //document.getElementById("car-specs").scrollIntoView({behavior: "smooth"});
+      return true;
+    } else if ((trip.fromDest!=undefined && trip.toDest!=undefined && trip.maxPassengers!=undefined && trip.date!=undefined) && ( trip.carModel!=undefined && trip.carFuel!=undefined) && ( trip.pictureChoice==undefined || (trip.pictureChoice=="uploadFile" && trip.pictureFile==undefined))) { 
+      console.log('we are here')
+      document.getElementById("extras").scrollIntoView({behavior: "smooth"});
+      return true;
+      
+    } else {
+      return false;
+    }
+  }
+  
+  
+
+  
+
+    
 
 
   
