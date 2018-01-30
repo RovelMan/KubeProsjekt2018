@@ -24,10 +24,6 @@
     width: 40%;
 }
 
-:host-context(.for-home) #map {
-    display: none;
-}
-
 /* CSS FOR FIND-A-TRIP-PAGE */
 
 :host-context(.for-search) #search-trip-form {
@@ -78,11 +74,6 @@
         width: auto;
         margin-bottom: 1em;
     }
-}
-
-#map {
-    height: 320px;
-    margin-top: 1em;
 }
 
 input[type="date"] {
