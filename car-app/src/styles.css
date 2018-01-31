@@ -8,3 +8,7 @@
 #flashMessageComponent, .flash-messages, .flash-message:last-child {
     display: block;
 }
+
+body {
+    padding-top: 0.1px;
+}
