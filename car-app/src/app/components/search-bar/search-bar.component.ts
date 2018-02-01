@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, NgZone, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ElementRef, NgZone, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { } from 'googlemaps';
@@ -15,6 +15,7 @@ export class SearchBarComponent implements OnInit {
   @ViewChild("searchFrom") searchFromElementRef: ElementRef;
   @ViewChild("searchTo") searchToElementRef: ElementRef;
   @Output() inputChanged: EventEmitter<any> = new EventEmitter<any>();
+  @Input() searchFromP: any;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,

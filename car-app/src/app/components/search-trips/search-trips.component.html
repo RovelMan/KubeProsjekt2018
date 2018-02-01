@@ -1,4 +1,4 @@
 <div class="jumbotron text-center">
-  <app-search-bar class="for-search" (inputChanged)="onInputChanged($event)"></app-search-bar>
+  <app-search-bar class="for-search" (inputChanged)="onInputChanged($event)" [searchFromP]=""></app-search-bar>
 </div>
 <app-map *ngIf="textSet()" [searchForm]="searchFormP"></app-map>
