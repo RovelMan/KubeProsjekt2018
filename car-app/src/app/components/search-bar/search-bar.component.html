@@ -18,7 +18,7 @@
     </div>
   </div>
   <div>
-    <input type="submit" class="btn btn-primary" value="Search" [routerLink]="['/search-trip', fromParameter:searchFromV]"><br>
+    <input type="submit" class="btn btn-primary" value="Search" [routerLink]="['/search-trip', {fromParameter:searchFromV}]"><br>
     <a id="make-trip-link" [routerLink]="['/make-trip']">
       Do you want to make your own trip? Click here
     </a>
