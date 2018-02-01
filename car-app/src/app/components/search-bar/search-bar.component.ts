@@ -32,7 +32,6 @@ export class SearchBarComponent implements OnInit {
         types: ["geocode"]
       });
       if (this.searchFromP != null) {
-        console.log("ttest");
         this.searchFromInput = this.searchFromP;
       }
     });
@@ -49,7 +48,6 @@ export class SearchBarComponent implements OnInit {
   private fromBtn() {
     setTimeout(() => {
       this.searchFromV = this.searchFromElementRef.nativeElement.value;
-      console.log(this.searchFromV);
     }, 0.1);
   }
 }

@@ -13,7 +13,6 @@ export class SearchTripsComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
   ngOnInit() {
     this.searchFromRoute = this.route.snapshot.params['fromParameter'];
-    console.log(this.searchFromRoute);
   }
 
   onInputChanged(form: any) {
