@@ -2,7 +2,7 @@
   <div id="search-trip-div">
     <div class="sub-form">
       <label>From destination</label>
-      <input type="text" (blur)="fromBtn()" class="form-control" placeholder="From" value="searchFromP" #searchFrom>
+      <input type="text" (blur)="fromBtn()" class="form-control" placeholder="From" [value]="test"  #searchFrom>
     </div>
     <div class="sub-form">
       <label>To destination</label>

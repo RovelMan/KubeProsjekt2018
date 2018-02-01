@@ -16,6 +16,7 @@ export class SearchBarComponent implements OnInit {
   @ViewChild("searchTo") searchToElementRef: ElementRef;
   @Output() inputChanged: EventEmitter<any> = new EventEmitter<any>();
   @Input() searchFromP: any;
+  test: string = "";
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -30,6 +31,10 @@ export class SearchBarComponent implements OnInit {
       let autocompleteTwo = new google.maps.places.Autocomplete(this.searchToElementRef.nativeElement, {
         types: ["geocode"]
       });
+      if (this.searchFromP != null) {
+        console.log("ttest");
+        this.test = this.searchFromP;
+      }
     });
   }
 
