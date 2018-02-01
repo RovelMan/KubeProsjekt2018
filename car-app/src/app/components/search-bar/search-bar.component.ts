@@ -16,7 +16,7 @@ export class SearchBarComponent implements OnInit {
   @ViewChild("searchTo") searchToElementRef: ElementRef;
   @Output() inputChanged: EventEmitter<any> = new EventEmitter<any>();
   @Input() searchFromP: any;
-  test: string = "";
+  searchFromInput: string = "";
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -33,7 +33,7 @@ export class SearchBarComponent implements OnInit {
       });
       if (this.searchFromP != null) {
         console.log("ttest");
-        this.test = this.searchFromP;
+        this.searchFromInput = this.searchFromP;
       }
     });
   }
