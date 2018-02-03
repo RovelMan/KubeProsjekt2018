@@ -8,11 +8,20 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class SearchTripsComponent implements OnInit {
   searchFormP: any;
+
+  //Fetching parameters from URL
   searchFromRoute: string;
+  searchToRoute: string;
+  searchPassengersRoute: string;
+  searchDateRoute: string;
+
 
   constructor(private route: ActivatedRoute) { }
   ngOnInit() {
     this.searchFromRoute = this.route.snapshot.params['fromParameter'];
+    this.searchToRoute = this.route.snapshot.params['toParameter'];
+    this.searchPassengersRoute = this.route.snapshot.params['passengerParameter'];
+    this.searchDateRoute = this.route.snapshot.params['dateParameter'];
   }
 
   onInputChanged(form: any) {
