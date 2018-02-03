@@ -51,6 +51,7 @@ const appRoutes: Routes = [
     NavComponent,
     LoginComponent,
     SearchBarComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
