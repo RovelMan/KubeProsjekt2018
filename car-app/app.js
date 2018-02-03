@@ -23,6 +23,10 @@ const app = express();
 
 const users = require('./routes/users');
 
+const trips = require('./routes/trips');
+
+
+
 // Port Number
 const port = 3000;
 
@@ -42,7 +46,7 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use('/users', users);
-
+app.use('/trips', trips);
 // Index Route
 app.get('/', (req, res) => {
   res.send('Invalid Endpoint');
@@ -56,3 +60,5 @@ app.get('*', (req, res) => {
 app.listen(port, () => {
   console.log('Server started on port '+port);
 });
+
+
