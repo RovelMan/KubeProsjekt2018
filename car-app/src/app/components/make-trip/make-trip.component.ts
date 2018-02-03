@@ -4,19 +4,13 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
-
-
-
-
-
-
 @Component({
   selector: 'app-make-trip',
   templateUrl: './make-trip.component.html',
   styleUrls: ['./make-trip.component.css']
 })
 export class MakeTripComponent implements OnInit {
-  /*
+  
   carModel: String;
   carFuel: String;
   otherInfo: String;
@@ -26,7 +20,7 @@ export class MakeTripComponent implements OnInit {
   baggageSpace: Boolean;
   pictureChoice: String;
   pictureFile: File;
-  */
+  
   constructor(
     private validateService:ValidateService, 
     private flashMessage: FlashMessagesService,
@@ -38,8 +32,8 @@ export class MakeTripComponent implements OnInit {
 
   ngOnInit() {
   }
-  /*
-  onClickSubmit() {
+  
+  onClickSubmit(from: string, to: string) {
     const trip = {
       
       carModel: this.carModel,
@@ -149,7 +143,8 @@ export class MakeTripComponent implements OnInit {
       pictureFile: this.pictureFile
     }
     console.log('before if')
-    */
+  }
+}
     
     /*
     if ( ) { 
