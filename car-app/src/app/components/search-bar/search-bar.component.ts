@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, NgZone, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ElementRef, NgZone, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { } from 'googlemaps';
@@ -11,10 +11,13 @@ declare var google;
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
+  searchFromV: string = "";
+  searchFromInput: string = "";
   @ViewChild("searchFrom") searchFromElementRef: ElementRef;
   @ViewChild("searchTo") searchToElementRef: ElementRef;
   @Output() inputChanged: EventEmitter<any> = new EventEmitter<any>();
-
+  @Input() searchFromP: any;
+  
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
@@ -28,6 +31,9 @@ export class SearchBarComponent implements OnInit {
       let autocompleteTwo = new google.maps.places.Autocomplete(this.searchToElementRef.nativeElement, {
         types: ["geocode"]
       });
+      if (this.searchFromP != null) {
+        this.searchFromInput = this.searchFromP;
+      }
     });
   }
 
@@ -37,5 +43,11 @@ export class SearchBarComponent implements OnInit {
       toText: searchTo
     }
     this.inputChanged.emit(form);
+  }
+
+  private fromBtn() {
+    setTimeout(() => {
+      this.searchFromV = this.searchFromElementRef.nativeElement.value;
+    }, 0.1);
   }
 }
