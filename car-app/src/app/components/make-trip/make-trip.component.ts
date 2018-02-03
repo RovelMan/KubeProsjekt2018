@@ -16,10 +16,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./make-trip.component.css']
 })
 export class MakeTripComponent implements OnInit {
-  fromDest: String;
-  toDest: String;
-  maxPassengers: Number;
-  date: Date;
+  /*
   carModel: String;
   carFuel: String;
   otherInfo: String;
@@ -29,7 +26,7 @@ export class MakeTripComponent implements OnInit {
   baggageSpace: Boolean;
   pictureChoice: String;
   pictureFile: File;
-  
+  */
   constructor(
     private validateService:ValidateService, 
     private flashMessage: FlashMessagesService,
@@ -41,13 +38,10 @@ export class MakeTripComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  /*
   onClickSubmit() {
     const trip = {
-      fromDest: this.fromDest,
-      toDest: this.toDest,
-      maxPassengers: this.maxPassengers,
-      date: this.date,
+      
       carModel: this.carModel,
       carFuel: this.carFuel,
       otherInfo: this.otherInfo,
@@ -75,10 +69,7 @@ export class MakeTripComponent implements OnInit {
 
   validateFields() {
     const trip = {
-      fromDest: this.fromDest,
-      toDest: this.toDest,
-      maxPassengers: this.maxPassengers,
-      date: this.date,
+      
       carModel: this.carModel,
       carFuel: this.carFuel,
       otherInfo: this.otherInfo,
@@ -104,10 +95,7 @@ export class MakeTripComponent implements OnInit {
  
   onClickSave() {
     const trip = {
-      fromDest: this.fromDest,
-      toDest: this.toDest,
-      maxPassengers: this.maxPassengers,
-      date: this.date,
+      
       carModel: this.carModel,
       carFuel: this.carFuel,
       otherInfo: this.otherInfo,
@@ -149,10 +137,7 @@ export class MakeTripComponent implements OnInit {
   
   changePath() {
     const trip = {
-      fromDest: this.fromDest,
-      toDest: this.toDest,
-      maxPassengers: this.maxPassengers,
-      date: this.date,
+      
       carModel: this.carModel,
       carFuel: this.carFuel,
       otherInfo: this.otherInfo,
@@ -164,7 +149,10 @@ export class MakeTripComponent implements OnInit {
       pictureFile: this.pictureFile
     }
     console.log('before if')
-    if ((trip.fromDest!=undefined && trip.toDest!=undefined && trip.maxPassengers!=undefined && trip.date!=undefined) && (trip.carModel==undefined || trip.carFuel==undefined) && (trip.pictureChoice==undefined || (trip.pictureChoice=="uploadFile" && trip.pictureFile==undefined)) ) { 
+    */
+    
+    /*
+    if ( ) { 
       
       //document.getElementById("car-specs").scrollIntoView({behavior: "smooth"});
       return true;
@@ -176,7 +164,8 @@ export class MakeTripComponent implements OnInit {
     } else {
       return false;
     }
-  }
+    */
+  
   
   
 

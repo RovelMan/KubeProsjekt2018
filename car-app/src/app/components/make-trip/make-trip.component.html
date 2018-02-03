@@ -1,13 +1,13 @@
-
+<!--
 <ng-template clickOutside></ng-template>
 <div class="row" class="jumbotron text-center" id="makeTripBody" >
   <div >
     <form (submit)="onClickSubmit()"   >
+    -->
+      <fieldset><app-search-bar></app-search-bar></fieldset>
 
-      <app-search-bar></app-search-bar>
-
-
-      <div class="card border-primary mb-3" style="max-width: 100%;" *ngIf="toDest&&fromDest&&maxPassengers&&date" id="car-specs">
+      <!--
+      <div class="card border-primary mb-3" style="max-width: 100%;" id="car-specs">
         <div class="card-header">
           <legend>Car specs</legend>
         </div>
@@ -43,8 +43,7 @@
       </div>
 
 
-      <div class="card border-primary mb-3" style="max-width: 100%;" *ngIf="toDest&&fromDest&&maxPassengers&&date&&carModel&&carFuel"
-        id="extras">
+      <div class="card border-primary mb-3" style="max-width: 100%;" id="extras">
         <div>
           <div class="card-header">
             <legend>Extras</legend>
@@ -64,7 +63,7 @@
 
 
         <div>
-          <div *ngIf="pictureChoice=='uploadFile'">
+          <div >
             <input type="file" name="pictureFile" accept="image/*" (change)="onFileChange($event)">
           </div>
         </div>
@@ -85,10 +84,12 @@
 
       </div>
 
+    -->
 
+<!--
       <div class="mainButtons">
-        <button type="submit" class="btn btn-primary" [ngClass]="{'buttonDisabled': !validateFields() }" name="upload" value="Upload">Upload</button>
-        <br>
+        <button type="submit" class="btn btn-primary" [ngClass]="{'buttonDisabled': false }" name="upload" value="Upload">Upload</button>
+        <br
         <button type="button" class="btn btn-primary" (click)="onClickSave()" name="save" value="Save">Save</button>
         <br>
         <input type="reset" value="Reset the form">
@@ -112,3 +113,4 @@
   <a [routerLink]="['/make-trip']" fragment="basics" (click)="onAnchorClick()" class="sub-form">Basics</a>
 </div>
 
+-->
