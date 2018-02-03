@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { MapComponent } from './components/map/map.component';
 
 
 
@@ -50,8 +51,6 @@ const appRoutes: Routes = [
     NavComponent,
     LoginComponent,
     SearchBarComponent,
-    
-    
   ],
   imports: [
     BrowserModule,

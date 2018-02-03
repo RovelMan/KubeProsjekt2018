@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-search-trips',
@@ -6,12 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-trips.component.css']
 })
 export class SearchTripsComponent implements OnInit {
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  searchFormP: any;
+  searchFromRoute: string;
 
-  constructor() {}
-
+  constructor(private route: ActivatedRoute) { }
   ngOnInit() {
+    this.searchFromRoute = this.route.snapshot.params['fromParameter'];
+  }
+
+  onInputChanged(form: any) {
+    this.searchFormP = form;
+  }
+
+  public textSet() {
+    return this.searchFormP != null;
   }
 
 }
