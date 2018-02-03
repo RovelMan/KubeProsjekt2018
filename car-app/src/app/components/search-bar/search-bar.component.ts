@@ -4,12 +4,6 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
-import { TripHandlerService } from '../../services/trip-handler.service';
-import { FlashMessagesModule } from 'angular2-flash-messages/module/module';
-import { Router } from '@angular/router';
-
-
-
 declare var google;
 
 @Component({
@@ -43,10 +37,7 @@ export class SearchBarComponent implements OnInit {
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private ngZone: NgZone,
-    private tripHandlerService: TripHandlerService,
-    private flashMessage: FlashMessagesService,
-    private router: Router
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -72,7 +63,7 @@ export class SearchBarComponent implements OnInit {
       fromText: searchFrom,
       toText: searchTo
     }
-    this.onRegisterSubmit(form);
+    
     if (form.toText != "" && form.fromText != "") {
       this.inputChanged.emit(form);
     }
@@ -85,21 +76,6 @@ export class SearchBarComponent implements OnInit {
     }, 0.1);
   }
 
-  onRegisterSubmit(form) {
-
-    const trip = {
-      from: form.fromText,
-      to: form.toText
-    }
-    // Register user
-    this.tripHandlerService.addTrip(trip).subscribe(data => {
-      if (data.success) {
-        this.flashMessage.show("You have now added a trip to the cloud", { cssClass: 'alert-success', timeout: 3000 });
-        this.router.navigate(['/my-profile']);
-      } else {
-        this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
-        this.router.navigate(['/']);
-      }
-    });
-  }
+  
+  
 }
