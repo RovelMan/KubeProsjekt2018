@@ -18,7 +18,7 @@ declare var google;
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-  
+
   //Parameters to be passed to search-trip-component
   searchFromV: string = "";
   searchToV: string = "";
@@ -40,14 +40,14 @@ export class SearchBarComponent implements OnInit {
   @ViewChild("searchFrom") searchFromElementRef: ElementRef;
   @ViewChild("searchTo") searchToElementRef: ElementRef;
   @Output() inputChanged: EventEmitter<any> = new EventEmitter<any>();
-  
+
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     private tripHandlerService: TripHandlerService,
     private flashMessage: FlashMessagesService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.mapsAPILoader.load().then(() => {
@@ -62,20 +62,20 @@ export class SearchBarComponent implements OnInit {
         this.searchToInput = this.searchToP;
         this.searchPassengersInput = this.searchPassengersP;
         this.searchDateInput = this.searchDateP;
-        this.searchDestination(this.searchFromInput, this.searchToInput) 
+        this.searchDestination(this.searchFromInput, this.searchToInput)
       }
     });
   }
-  
+
   private searchDestination(searchFrom: string, searchTo: string) {
     const form = {
       fromText: searchFrom,
       toText: searchTo
     }
     this.onRegisterSubmit(form);
-      if (form.toText != "" && form.fromText != "") {
-        this.inputChanged.emit(form);
-      }
+    if (form.toText != "" && form.fromText != "") {
+      this.inputChanged.emit(form);
+    }
   }
 
   private fromBtn() {
@@ -86,21 +86,19 @@ export class SearchBarComponent implements OnInit {
   }
 
   onRegisterSubmit(form) {
-    
+
     const trip = {
       from: form.fromText,
       to: form.toText
     }
     // Register user
     this.tripHandlerService.addTrip(trip).subscribe(data => {
-      
-
-      if(data.success) {
-        this.flashMessage.show("You are now registered and can log in", {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/']);
+      if (data.success) {
+        this.flashMessage.show("You have now added a trip to the cloud", { cssClass: 'alert-success', timeout: 3000 });
+        this.router.navigate(['/my-profile']);
       } else {
-        this.flashMessage.show("Something went wrong", {cssClass: 'alert-danger', timeout: 3000});
-        this.router.navigate(['/register']);
+        this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
+        this.router.navigate(['/']);
       }
     });
   }

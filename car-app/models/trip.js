@@ -11,11 +11,11 @@ const TripSchema = mongoose.Schema({
         type: String,
         required: true
     }
-    
+
 });
 
 const Trip = module.exports = mongoose.model('Trip', TripSchema);
 
-module.exports.addTrip = function(newTrip, callback) {
+module.exports.addTrip = function (newTrip, callback) {
     newTrip.save(callback);
 }
