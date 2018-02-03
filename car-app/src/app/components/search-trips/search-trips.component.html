@@ -1,5 +1,6 @@
 <div class="jumbotron text-center">
-<app-search-bar class="for-search" (inputChanged)="onInputChanged($event)" [searchFromP]="searchFromRoute"></app-search-bar>
+    <h2>Where do you want to go?</h2>
+    <app-search-bar class="for-search" (inputChanged)="onInputChanged($event)" [searchFromP]="searchFromRoute" [searchToP]="searchToRoute"
+        [searchPassengersP]="searchPassengersRoute" [searchDateP]="searchDateRoute"></app-search-bar>
 </div>
 <app-map *ngIf="textSet()" [searchForm]="searchFormP"></app-map>
-
