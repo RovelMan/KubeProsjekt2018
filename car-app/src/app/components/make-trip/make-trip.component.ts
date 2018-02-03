@@ -38,7 +38,11 @@ export class MakeTripComponent implements OnInit {
 
   ngOnInit() {
   }
+
   /*
+
+Commented as we don't know what we need in the future, but may have use for this later.
+
   onClickSubmit() {
     const trip = {
       
@@ -165,16 +169,6 @@ export class MakeTripComponent implements OnInit {
       return false;
     }
     */
-  
-  
-  
-
-  
-
-    
-
-
-  
 
   
 }
