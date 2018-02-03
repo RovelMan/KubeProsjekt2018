@@ -24,6 +24,10 @@ import { AuthGuard } from './guards/auth.guard';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { MapComponent } from './components/map/map.component';
 
+
+
+
+
 const appRoutes: Routes = [
   {path:'', component: HomeComponent}, //må sørge for at alle sider blir ført hit
   {path:'register', component: RegisterComponent},
@@ -47,7 +51,6 @@ const appRoutes: Routes = [
     NavComponent,
     LoginComponent,
     SearchBarComponent,
-    MapComponent
   ],
   imports: [
     BrowserModule,

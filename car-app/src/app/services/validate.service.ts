@@ -24,4 +24,16 @@ export class ValidateService {
       return true;
     }
   }
+
+  //may be undefined even though it is there
+  validateMakeTrip(trip) {
+
+    if (trip.fromDest==undefined || trip.toDest==undefined || trip.maxPassengers==undefined || trip.date==undefined || trip.carModel==undefined || trip.carFuel==undefined || trip.pictureChoice==undefined || (trip.pictureChoice=="uploadFile" && trip.pictureFile==undefined)) { 
+      return false;
+    } else {
+      return true;
+    
+    }   
+      
+  }
 }
