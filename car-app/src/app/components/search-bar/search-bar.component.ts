@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
+
 declare var google;
 
 @Component({
@@ -11,7 +12,7 @@ declare var google;
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent implements OnInit {
-  
+
   //Parameters to be passed to search-trip-component
   searchFromV: string = "";
   searchToV: string = "";
@@ -33,11 +34,11 @@ export class SearchBarComponent implements OnInit {
   @ViewChild("searchFrom") searchFromElementRef: ElementRef;
   @ViewChild("searchTo") searchToElementRef: ElementRef;
   @Output() inputChanged: EventEmitter<any> = new EventEmitter<any>();
-  
+
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.mapsAPILoader.load().then(() => {
@@ -52,19 +53,20 @@ export class SearchBarComponent implements OnInit {
         this.searchToInput = this.searchToP;
         this.searchPassengersInput = this.searchPassengersP;
         this.searchDateInput = this.searchDateP;
-        this.searchDestination(this.searchFromInput, this.searchToInput) 
+        this.searchDestination(this.searchFromInput, this.searchToInput)
       }
     });
   }
-  
+
   private searchDestination(searchFrom: string, searchTo: string) {
     const form = {
       fromText: searchFrom,
       toText: searchTo
     }
-      if (form.toText != "" && form.fromText != "") {
-        this.inputChanged.emit(form);
-      }
+    
+    if (form.toText != "" && form.fromText != "") {
+      this.inputChanged.emit(form);
+    }
   }
 
   private fromBtn() {
@@ -73,4 +75,7 @@ export class SearchBarComponent implements OnInit {
       this.searchToV = this.searchToElementRef.nativeElement.value;
     }, 0.1);
   }
+
+  
+  
 }

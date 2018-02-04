@@ -24,7 +24,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { MapComponent } from './components/map/map.component';
 
-
+import { TripHandlerService } from './services/trip-handler.service';
 
 
 
@@ -65,7 +65,7 @@ const appRoutes: Routes = [
     }),
     ReactiveFormsModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard],
+  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
