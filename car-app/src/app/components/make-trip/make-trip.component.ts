@@ -153,7 +153,7 @@ export class MakeTripComponent implements OnInit {
     */
 
   
-}
+
 
 
 
