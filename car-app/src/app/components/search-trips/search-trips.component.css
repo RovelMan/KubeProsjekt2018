@@ -1,3 +1,25 @@
+#resultsBody {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+#filterBodyTrip {
+    margin-right: 1%;
+    flex: 0.5;
+}
+
+#resultBodyTrip {
+    margin-right: 1%;
+    flex: 1;
+}
+
+#mapBodyTrip {
+    margin-right: 1%;
+    flex: 1;
+}
+
 .jumbotron {
     margin-top: 2%;
 }

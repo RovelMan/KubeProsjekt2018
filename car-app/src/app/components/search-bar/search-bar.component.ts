@@ -3,7 +3,6 @@ import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
-import { TripHandlerService } from '../../services/trip-handler.service';
 
 declare var google;
 
@@ -39,7 +38,6 @@ export class SearchBarComponent implements OnInit {
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
-    private tripHandler: TripHandlerService, 
     private flashMessage: FlashMessagesService
   ) { }
 
@@ -66,8 +64,6 @@ export class SearchBarComponent implements OnInit {
       fromText: searchFrom,
       toText: searchTo
     }
-    
-    this.findTrips(form);
 
     if (form.toText != "" && form.fromText != "") {
       this.inputChanged.emit(form);
@@ -81,26 +77,4 @@ export class SearchBarComponent implements OnInit {
       this.searchToV = this.searchToElementRef.nativeElement.value;
     }, 0.1);
   }
-
-
-  findTrips(trip: any) {
-    const thisTrip = {
-      from: trip.fromText,
-      to: trip.toText
-    }
-    console.log('in home-component, find trips()');
-    this.tripHandler.findTripFromDest(thisTrip).subscribe(data => {
-      if (data.success) {
-        this.flashMessage.show("You have now found all available trips", { cssClass: 'alert-success', timeout: 3000 });
-        console.log('here is the data : ');
-        console.log(data);
-      } else {
-        this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
-      }
-      console.log(data.tripsFound);
-    });
-  }
-
-  
-  
 }
