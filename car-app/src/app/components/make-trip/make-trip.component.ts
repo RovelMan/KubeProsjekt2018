@@ -4,6 +4,9 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { TripHandlerService } from '../../services/trip-handler.service';
+import { AuthService } from '../../services/auth.service';
+
+
 
 @Component({
   selector: 'app-make-trip',
@@ -22,33 +25,60 @@ export class MakeTripComponent implements OnInit {
   pictureChoice: String;
   pictureFile: File;
 
+  user: Object;
+  id: String;
+
   constructor(
     private validateService: ValidateService,
     private flashMessage: FlashMessagesService,
     private router: Router,
     private route: ActivatedRoute,
     private tripHandlerService: TripHandlerService,
+    private authService: AuthService
 
   ) { }
 
   ngOnInit() {
   }
 
-  onClickSubmit(from: string, to: string) {
-    const trip = {
-      from: from,
-      to: to
+  onClickSubmit(from: string, to: string, passengers: number, date: string) {
+    if (this.authService.loggedIn()) {
+      this.authService.getProfile().subscribe(profile => {
+        this.user = profile.user;
+        this.id = profile.id;
+
+
+
+        
+        const trip = {
+          from: from,
+          to: to,
+          maxPassengers: passengers,
+          date: date,
+          driverId: this.id
+        }
+        // Register trip
+        this.tripHandlerService.addTrip(trip).subscribe(data => {
+          if (data.success) {
+            this.flashMessage.show("You have now added a trip to the cloud", { cssClass: 'alert-success', timeout: 3000 });
+            this.router.navigate(['/my-profile']);
+          } else {
+            this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
+            this.router.navigate(['/make-trip']);
+          }
+        });
+      },
+
+        //Uncertain if we need this error check, but think it's good practice.
+        err => {
+          console.log(err);
+          return false;
+        });
+    } else {
+      this.flashMessage.show("Not logged in!", { cssClass: 'alert-danger', timeout: 3000 });
     }
-    // Register user
-    this.tripHandlerService.addTrip(trip).subscribe(data => {
-      if (data.success) {
-        this.flashMessage.show("You have now added a trip to the cloud", { cssClass: 'alert-success', timeout: 3000 });
-        this.router.navigate(['/my-profile']);
-      } else {
-        this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
-        this.router.navigate(['/make-trip']);
-      }
-    });
+
+
 
   }
 
@@ -152,7 +182,7 @@ export class MakeTripComponent implements OnInit {
     }
     */
 
-  
+
 
 
 

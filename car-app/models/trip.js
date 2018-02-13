@@ -10,6 +10,18 @@ const TripSchema = mongoose.Schema({
     to: {
         type: String,
         required: true
+    },
+    maxPassengers: {
+        type: Number,
+        required: true
+    },
+    date: {
+        type: String,
+        required: true
+    },
+    driverId: {
+        type: String,
+        required: true
     }
 
 });

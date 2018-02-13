@@ -10,7 +10,6 @@ export class TripHandlerService {
 
   addTrip(trip){
     console.log('In service-trip-handler');
-
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/trips/addtrip', trip, {headers: headers})
@@ -18,7 +17,6 @@ export class TripHandlerService {
   }
 
   findTripFromDest(trip){
-    console.log(trip.from);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/trips/findtrips', trip, {headers: headers}) 
