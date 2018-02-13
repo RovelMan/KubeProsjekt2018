@@ -5,19 +5,19 @@
     flex-wrap: wrap;
 }
 
-#resultBodyTrip {
-    margin-right: 1%;
-    flex: 1;
-}
-
 #filterBodyTrip {
     margin-right: 1%;
     flex: 0.5;
 }
 
+#resultBodyTrip {
+    margin-right: 1%;
+    flex: 1;
+}
+
 #mapBodyTrip {
     margin-right: 1%;
-    flex: 1.5;
+    flex: 1;
 }
 
 .jumbotron {
