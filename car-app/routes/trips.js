@@ -10,6 +10,9 @@ router.post('/addtrip', (req, res, next) => {
 
         from: req.body.from,
         to: req.body.to,
+        maxPassengers: req.body.maxPassengers,
+        date: req.body.date,
+        driverId: req.body.driverId
     })
     Trip.addTrip(newTrip, (err, trip) => {
         if (err) {

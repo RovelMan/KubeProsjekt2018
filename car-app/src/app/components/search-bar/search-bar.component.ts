@@ -91,7 +91,7 @@ export class SearchBarComponent implements OnInit {
     console.log('in home-component, find trips()');
     this.tripHandler.findTripFromDest(thisTrip).subscribe(data => {
       if (data.success) {
-        this.flashMessage.show("You have now found a trip", { cssClass: 'alert-success', timeout: 3000 });
+        this.flashMessage.show("You have now found all available trips", { cssClass: 'alert-success', timeout: 3000 });
         console.log('here is the data : ');
         console.log(data);
       } else {
