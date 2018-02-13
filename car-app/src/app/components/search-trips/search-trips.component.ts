@@ -32,4 +32,6 @@ export class SearchTripsComponent implements OnInit {
     return this.searchFormP != null;
   }
 
+  
+
 }
