@@ -3,4 +3,5 @@
     <app-search-bar class="for-search" (inputChanged)="onInputChanged($event)" [searchFromP]="searchFromRoute" [searchToP]="searchToRoute"
         [searchPassengersP]="searchPassengersRoute" [searchDateP]="searchDateRoute"></app-search-bar>
 </div>
+
 <app-map *ngIf="textSet()" [searchForm]="searchFormP"></app-map>

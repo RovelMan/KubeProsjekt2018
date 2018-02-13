@@ -20,5 +20,16 @@ router.post('/addtrip', (req, res, next) => {
     })
 });
 
+router.post('/findtrips', (req, res, next) => {
+    let thisTrip = new Trip({
+        from: req.body.from,
+        to: req.body.to
+    })
+
+
+    console.log('in trips.js');
+    Trip.findTripFromDest(thisTrip, res, (err, trip) => { })
+});
+
 
 module.exports = router;

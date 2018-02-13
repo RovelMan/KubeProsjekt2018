@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 
@@ -10,11 +9,13 @@ import { SearchBarComponent } from '../search-bar/search-bar.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private authService:AuthService, private flashMessage:FlashMessagesService) { }
+  trip: any
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
- 
+  
+
+
 }
