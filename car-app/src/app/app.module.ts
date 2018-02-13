@@ -25,6 +25,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { MapComponent } from './components/map/map.component';
 
 import { TripHandlerService } from './services/trip-handler.service';
+import { ResultsComponent } from './components/results/results.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 
 
@@ -51,7 +53,9 @@ const appRoutes: Routes = [
     NavComponent,
     LoginComponent,
     SearchBarComponent,
-    MapComponent
+    MapComponent,
+    ResultsComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

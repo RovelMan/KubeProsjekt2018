@@ -3,5 +3,14 @@
     <app-search-bar class="for-search" (inputChanged)="onInputChanged($event)" [searchFromP]="searchFromRoute" [searchToP]="searchToRoute"
         [searchPassengersP]="searchPassengersRoute" [searchDateP]="searchDateRoute"></app-search-bar>
 </div>
-
-<app-map *ngIf="textSet()" [searchForm]="searchFormP"></app-map>
+<div id="resultsBody" *ngIf="textSet()">
+    <div id="filterBodyTrip" class="jumbotron text-center">
+        <h2>Filter</h2>
+    </div>
+    <div id="resultBodyTrip" class="jumbotron text-center">
+        <h2>Results</h2>
+    </div>
+    <div id="mapBodyTrip" class="jumbotron text-center">
+        <app-map [searchForm]="searchFormP"></app-map>
+    </div>
+</div>
