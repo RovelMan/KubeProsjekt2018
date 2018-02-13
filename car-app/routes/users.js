@@ -60,7 +60,7 @@ router.post('/authenticate', (req, res, next) => {
 
 //Profile; protect the profile page 
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
-    res.json({user: req.user})
+    res.json({user: req.user, id: req.user.id})
 });
 
 module.exports = router;

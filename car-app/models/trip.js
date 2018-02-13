@@ -10,6 +10,18 @@ const TripSchema = mongoose.Schema({
     to: {
         type: String,
         required: true
+    },
+    maxPassengers: {
+        type: Number,
+        required: true
+    },
+    date: {
+        type: String,
+        required: true
+    },
+    driverId: {
+        type: String,
+        required: true
     }
 
 });
@@ -29,8 +41,6 @@ module.exports.findTripFromDest = function (trip, res, callback) {
             res.json({ success: false, msg: 'You have encountered an error' });
 
         } else {
-            // send the list of all people in database with name of "John James" and age of 36
-            // Very possible this will be an array with just one Person object in it.
             console.log(' no err in trips.js, ...');
             res.json({ success: true, msg: 'You have found all the corresponding trips', tripsFound: trips });
         }
