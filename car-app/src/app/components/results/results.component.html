@@ -1,10 +1,14 @@
 <div class="aResult" *ngFor="let result of resultsArray">
   <div class="card border-success mb-3">
     <div class="card-header">
-        <h5 class="card-title">{{result.from}} -> {{result.to}}</h5>
+      <h5 class="card-title">{{result.from}} -> {{result.to}}</h5>
+      <p></p>
+      <div *ngFor="let id of result.passengerIds">
+        <p>Passengers ids: {{id}}</p>
+      </div>
     </div>
     <div class="card-body">
-      <button class="btn btn-info">Join</button>
+      <button class="btn btn-info" (click)="joinTrip(result._id)">Join</button>
     </div>
   </div>
 </div>

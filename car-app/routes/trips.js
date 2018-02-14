@@ -47,6 +47,13 @@ router.post('/findmytripsasdriver', (req, res, next) => {
     Trip.findMyTripsAsDriver(passengerId, res, (err, trip) => { })
 });
 
+router.post('/jointrip', (req, res, next) => {
+    let tripAndPassenger = {
+        passengerId: req.body.passengerId,
+        tripId: req.body.tripId
+    }
+    Trip.joinTrip(tripAndPassenger, res, (err, trip) => { })
+});
 
 
 
