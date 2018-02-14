@@ -23,12 +23,18 @@ export class TripHandlerService {
       .map(res => res.json());
   }
 
-  findMyTrips(findMyTripsInput) {
+  findMyTripsAsPassenger(findMyTripsInput) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/trips/findmytrips', findMyTripsInput, {headers: headers}) 
+    return this.http.post('http://localhost:3000/trips/findmytripsaspassenger', findMyTripsInput, {headers: headers}) 
       .map(res => res.json());
   }
 
+  findMyTripsAsDriver(findMyTripsInput) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/trips/findmytripsasdriver', findMyTripsInput, {headers: headers}) 
+      .map(res => res.json());
+  }
 
 }

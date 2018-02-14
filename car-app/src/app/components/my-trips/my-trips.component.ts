@@ -11,12 +11,18 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class MyTripsComponent implements OnInit {
 
   passengerId: String;
-  myTrips: any;
+  myTripsPassenger: any;
+  myTripsDriver: any;
 
   constructor(private tripHandler: TripHandlerService, private authService: AuthService, private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
+    this.findMyTripsPassenger();
+    this.findMyTripsDriver();
+    
+  }
 
+  findMyTripsPassenger() {
     this.authService.getProfile().subscribe(profile => {
       this.passengerId = profile.id;
 
@@ -24,10 +30,10 @@ export class MyTripsComponent implements OnInit {
         passengerId: this.passengerId
       }
 
-      this.tripHandler.findMyTrips(findMyTripsInput).subscribe(data => {
+      this.tripHandler.findMyTripsAsPassenger(findMyTripsInput).subscribe(data => {
         if (data.success) {
 
-          this.myTrips = data.tripsFound;
+          this.myTripsPassenger = data.tripsFound;
         } else {
           this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
         }
@@ -38,6 +44,35 @@ export class MyTripsComponent implements OnInit {
         console.log(err);
         return false;
       });
+
+
+  }
+
+
+  findMyTripsDriver() {
+    this.authService.getProfile().subscribe(profile => {
+      this.passengerId = profile.id;
+
+      const findMyTripsInput = {
+        passengerId: this.passengerId
+      }
+
+      this.tripHandler.findMyTripsAsDriver(findMyTripsInput).subscribe(data => {
+        if (data.success) {
+
+          this.myTripsDriver = data.tripsFound;
+        } else {
+          this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
+        }
+      });
+    },
+      //Uncertain if we need this error check, but think it's good practice.
+      err => {
+        console.log(err);
+        return false;
+      });
+
+
   }
 
 

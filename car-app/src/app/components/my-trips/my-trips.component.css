@@ -1,3 +1,10 @@
 #myTrips {
     margin-top: 2%;
 }
+
+#resultsBody {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    flex-wrap: wrap;
+}
