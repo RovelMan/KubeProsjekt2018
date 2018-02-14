@@ -47,9 +47,6 @@ export class MakeTripComponent implements OnInit {
         this.user = profile.user;
         this.id = profile.id;
 
-
-
-        
         const trip = {
           from: from,
           to: to,

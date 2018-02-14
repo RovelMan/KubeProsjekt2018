@@ -5,7 +5,7 @@ import { Http, Headers } from '@angular/http';
 @Injectable()
 export class TripHandlerService {
   trip: any;
-  
+  id: String;
   constructor(private http:Http) { }
 
   addTrip(trip){
@@ -20,6 +20,14 @@ export class TripHandlerService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/trips/findtrips', trip, {headers: headers}) 
+      .map(res => res.json());
+  }
+
+  findMyTrips(findMyTripsInput) {
+    console.log(findMyTripsInput);
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/trips/findmytrips', findMyTripsInput, {headers: headers}) 
       .map(res => res.json());
   }
 
