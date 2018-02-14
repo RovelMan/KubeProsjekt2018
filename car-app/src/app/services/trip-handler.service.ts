@@ -24,7 +24,6 @@ export class TripHandlerService {
   }
 
   findMyTrips(findMyTripsInput) {
-    console.log(findMyTripsInput);
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/trips/findmytrips', findMyTripsInput, {headers: headers}) 

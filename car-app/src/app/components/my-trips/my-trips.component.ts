@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TripHandlerService } from '../../services/trip-handler.service'
-import { AuthService } from '../../services/auth.service'
+import { TripHandlerService } from '../../services/trip-handler.service';
+import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
@@ -9,25 +9,26 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./my-trips.component.css']
 })
 export class MyTripsComponent implements OnInit {
+
   passengerId: String;
+  myTrips: any;
 
   constructor(private tripHandler: TripHandlerService, private authService: AuthService, private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
-    
+
     this.authService.getProfile().subscribe(profile => {
       this.passengerId = profile.id;
       console.log(this.passengerId);
-      
+
       const findMyTripsInput = {
         passengerId: this.passengerId
       }
 
-
-
       this.tripHandler.findMyTrips(findMyTripsInput).subscribe(data => {
         if (data.success) {
-          console.log(data.tripsFound);
+
+          this.myTrips = data.tripsFound;
         } else {
           this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
         }

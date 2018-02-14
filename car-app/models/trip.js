@@ -39,29 +39,21 @@ module.exports.addTrip = function (newTrip, callback) {
 
 
 module.exports.findTripFromDest = function (trip, res, callback) {
-    console.log('in trip.js');
     Trip.find({ "from": trip.from, "to": trip.to },  (err, trips) => {  
         if (err) {
-            console.log('err in trip.js, ...');
             res.json({ success: false, msg: 'You have encountered an error' });
-
         } else {
-            console.log(' no err in trips.js, ...');
             res.json({ success: true, msg: 'You have found all the corresponding trips', tripsFound: trips });
         }
     });    
 }
 
 module.exports.findMyTrips = function(passengerId, res, callback) {
-    console.log('in trip.js');
     const query = {"passengerIds": passengerId};
     Trip.find(query, (err, trips) => {
         if (err) {
-            console.log('err in trip.js, ...');
             res.json({ success: false, msg: 'You have encountered an error' });
-
         } else {
-            console.log(' no err in trips.js, ...');
             res.json({ success: true, msg: 'You have found all the corresponding MY trips', tripsFound: trips });
         }
     }); 

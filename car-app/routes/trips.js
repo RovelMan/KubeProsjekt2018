@@ -33,26 +33,13 @@ router.post('/findtrips', (req, res, next) => {
         from: req.body.from,
         to: req.body.to
     })
-
-
     console.log('in trips.js');
     Trip.findTripFromDest(thisTrip, res, (err, trip) => { })
 });
 
 router.post('/findmytrips', (req, res, next) => {
-
-    
-    let passengerId = new String(req.body.passengerId)
-   
-    
-    //let id = new String(req.body);
-    console.log('123');
-    console.log(req.body.passengerId);
-    console.log('in trips.js in findmytrips');
-
+    let passengerId = new String(req.body.passengerId);
     Trip.findMyTrips(passengerId, res, (err, trip) => { })
-
-
 });
 
 
