@@ -68,3 +68,22 @@ module.exports.findMyTripsAsDriver = function(passengerId, res, callback) {
         }
     }); 
 }
+
+module.exports.joinTrip = function(tripAndPassenger, res, callback) {
+    
+    Trip.findById(tripAndPassenger.tripId, (err, trip) => {
+        if (err) {
+            res.json({ success: false, msg: 'You have encountered an error' });
+        } else {
+            trip.passengerIds.push(tripAndPassenger.passengerId);
+            trip.save((err, trip) => {
+                if (err) {
+                    res.json({ success: false, msg: 'You have encountered an error' });
+                } else {
+                    res.json({success: true, msg: 'You have updated and saved the trip'});
+                }
+            });
+            
+        }
+    }); 
+}

@@ -37,4 +37,11 @@ export class TripHandlerService {
       .map(res => res.json());
   }
 
+  joinTrip(joinTripInput) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/trips/jointrip', joinTripInput, {headers: headers}) 
+      .map(res => res.json());
+  }
+
 }

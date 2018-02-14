@@ -14,12 +14,15 @@ export class MyTripsComponent implements OnInit {
   myTripsPassenger: any;
   myTripsDriver: any;
 
-  constructor(private tripHandler: TripHandlerService, private authService: AuthService, private flashMessage: FlashMessagesService) { }
+  constructor(
+    private tripHandler: TripHandlerService, 
+    private authService: AuthService, 
+    private flashMessage: FlashMessagesService
+  ) { }
 
   ngOnInit() {
     this.findMyTripsPassenger();
     this.findMyTripsDriver();
-    
   }
 
   findMyTripsPassenger() {
@@ -71,9 +74,6 @@ export class MyTripsComponent implements OnInit {
         console.log(err);
         return false;
       });
-
-
   }
-
 
 }
