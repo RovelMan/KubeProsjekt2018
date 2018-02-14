@@ -19,7 +19,6 @@ export class MyTripsComponent implements OnInit {
 
     this.authService.getProfile().subscribe(profile => {
       this.passengerId = profile.id;
-      console.log(this.passengerId);
 
       const findMyTripsInput = {
         passengerId: this.passengerId

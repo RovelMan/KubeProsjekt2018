@@ -1,5 +1,12 @@
 <div id="myTrips" class="jumbotron">
-  <h2 class = "page-header">My trips</h2>
+  <h2 class="page-header">My trips</h2>
   <p>Here are your trips!</p>
-  <a class="btn btn-primary" [routerLink]="['/my-profile']">My profile <span class="sr-only">(current)</span></a>
+  <ul>
+    <li *ngFor="let trip of myTrips">
+      From: {{trip.from}}, to: {{trip.to}}
+    </li>
+  </ul>
+  <a class="btn btn-primary" [routerLink]="['/my-profile']">My profile
+    <span class="sr-only">(current)</span>
+  </a>
 </div>
