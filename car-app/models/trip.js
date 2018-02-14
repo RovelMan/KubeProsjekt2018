@@ -48,7 +48,7 @@ module.exports.findTripFromDest = function (trip, res, callback) {
     });    
 }
 
-module.exports.findMyTrips = function(passengerId, res, callback) {
+module.exports.findMyTripsAsPassenger = function(passengerId, res, callback) {
     const query = {"passengerIds": passengerId};
     Trip.find(query, (err, trips) => {
         if (err) {
@@ -58,4 +58,13 @@ module.exports.findMyTrips = function(passengerId, res, callback) {
         }
     }); 
 }
-
+module.exports.findMyTripsAsDriver = function(passengerId, res, callback) {
+    const query = {"driverId": passengerId};
+    Trip.find(query, (err, trips) => {
+        if (err) {
+            res.json({ success: false, msg: 'You have encountered an error' });
+        } else {
+            res.json({ success: true, msg: 'You have found all the corresponding MY trips', tripsFound: trips });
+        }
+    }); 
+}

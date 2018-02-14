@@ -37,11 +37,15 @@ router.post('/findtrips', (req, res, next) => {
     Trip.findTripFromDest(thisTrip, res, (err, trip) => { })
 });
 
-router.post('/findmytrips', (req, res, next) => {
+router.post('/findmytripsaspassenger', (req, res, next) => {
     let passengerId = new String(req.body.passengerId);
-    Trip.findMyTrips(passengerId, res, (err, trip) => { })
+    Trip.findMyTripsAsPassenger(passengerId, res, (err, trip) => { })
 });
 
+router.post('/findmytripsasdriver', (req, res, next) => {
+    let passengerId = new String(req.body.passengerId);
+    Trip.findMyTripsAsDriver(passengerId, res, (err, trip) => { })
+});
 
 
 
