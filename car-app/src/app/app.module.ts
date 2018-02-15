@@ -27,6 +27,7 @@ import { MapComponent } from './components/map/map.component';
 import { TripHandlerService } from './services/trip-handler.service';
 import { ResultsComponent } from './components/results/results.component';
 import { FilterComponent } from './components/filter/filter.component';
+import { UserHandlerService } from './services/user-handler.service';
 
 
 
@@ -69,7 +70,7 @@ const appRoutes: Routes = [
     }),
     ReactiveFormsModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService],
+  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

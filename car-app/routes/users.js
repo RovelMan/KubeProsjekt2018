@@ -63,4 +63,11 @@ router.get('/profile', passport.authenticate('jwt', { session: false }), (req, r
   res.json({ user: req.user, id: req.user.id })
 });
 
+router.post('/deleteprofile', (req, res, next) => {
+  let user = {
+      userId: req.body._id
+  }
+  User.deleteProfile(user, res, (err) = { })
+});
+
 module.exports = router;

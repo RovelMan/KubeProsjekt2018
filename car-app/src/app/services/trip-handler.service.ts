@@ -44,4 +44,11 @@ export class TripHandlerService {
       .map(res => res.json());
   }
 
+  deleteTrip(deleteTripInput) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/trips/deletetrip', deleteTripInput, {headers: headers}) 
+      .map(res => res.json());
+  }
+
 }
