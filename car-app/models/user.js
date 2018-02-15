@@ -53,3 +53,14 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
       callback(null, isMatch);
     });
   }
+  module.exports.deleteProfile = function(user, res, callback) {
+    console.log(user.userId);
+    User.findByIdAndRemove(user.userId, (err) => {  
+        if (err) {
+            res.json({ success: false, msg: 'You have encountered an error' });
+            
+        } else {
+            res.json({success: true, msg: 'You have deleted the trip'});
+        }
+    });
+}
