@@ -75,5 +75,19 @@ export class MyTripsComponent implements OnInit {
         return false;
       });
   }
+  deleteTrip(tripClickedId) {
+    const deleteTripInput = {
+      tripId: tripClickedId
+    }
+
+    this.tripHandler.deleteTrip(deleteTripInput).subscribe(data => {
+      if (data.success) {
+        this.flashMessage.show("The trip was deleted.", {cssClass: 'alert-success', timeout: 3000});
+      } else {
+        this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
+      }
+    });
+  }
+  
 
 }

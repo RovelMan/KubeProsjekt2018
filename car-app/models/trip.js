@@ -87,3 +87,17 @@ module.exports.joinTrip = function(tripAndPassenger, res, callback) {
         }
     }); 
 }
+
+module.exports.deleteTrip = function(deleteTrip, res, callback) {
+    console.log('IN TRIP.JS HHH');
+    console.log(deleteTrip.tripId);
+    Trip.findByIdAndRemove(deleteTrip.tripId, (err) => {  
+        if (err) {
+            res.json({ success: false, msg: 'You have encountered an error' });
+            
+        } else {
+            res.json({success: true, msg: 'You have deleted the trip'});
+            console.log('your trip should have been deleted?');
+        }
+    });
+}

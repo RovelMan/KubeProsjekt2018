@@ -55,6 +55,13 @@ router.post('/jointrip', (req, res, next) => {
     Trip.joinTrip(tripAndPassenger, res, (err, trip) => { })
 });
 
+router.post('/deletetrip', (req, res, next) => {
+    let deleteTrip = {
+        tripId: req.body.tripId
+    }
+    Trip.deleteTrip(deleteTrip, res, (err) = { })
+});
+
 
 
 
