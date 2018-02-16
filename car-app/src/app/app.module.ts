@@ -28,7 +28,8 @@ import { TripHandlerService } from './services/trip-handler.service';
 import { ResultsComponent } from './components/results/results.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { UserHandlerService } from './services/user-handler.service';
-
+import { MessagesComponent } from './components/messages/messages.component';
+import { MessagesHandlerService } from './services/messages-handler.service'
 
 
 const appRoutes: Routes = [
@@ -56,7 +57,8 @@ const appRoutes: Routes = [
     SearchBarComponent,
     MapComponent,
     ResultsComponent,
-    FilterComponent
+    FilterComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,7 @@ const appRoutes: Routes = [
     }),
     ReactiveFormsModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService],
+  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, MessagesHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
