@@ -22,8 +22,9 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 
 const users = require('./routes/users');
-
 const trips = require('./routes/trips');
+const messages = require('./routes/messages');
+
 
 
 
@@ -47,6 +48,8 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 app.use('/trips', trips);
+app.use('/messages', messages);
+
 // Index Route
 app.get('/', (req, res) => {
   res.send('Invalid Endpoint');
