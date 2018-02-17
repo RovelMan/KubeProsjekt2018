@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { TripHandlerService } from '../../services/trip-handler.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -12,8 +12,8 @@ import { AuthService } from '../../services/auth.service';
 export class ThisTripComponent implements OnInit {
 
   theId: string;
-  theTrip: any;
-  passengerId: any;
+  theTrip: any = 0;
+  passengerId: string = "";
 
   constructor(
     private route: ActivatedRoute,
@@ -46,7 +46,6 @@ export class ThisTripComponent implements OnInit {
     }
     this.tripHandler.findMyTripById(findTripByIdInput).subscribe(data => {
       if (data.success) {
-        this.flashMessage.show("Yeah, you just joined a trip !", { cssClass: 'alert-success', timeout: 3000 });
         this.theTrip = data.tripFound;
         console.log(data.tripFound);
       } else {
@@ -63,7 +62,7 @@ export class ThisTripComponent implements OnInit {
     }
     this.tripHandler.joinTrip(joinTripInput).subscribe(data => {
       if (data.success) {
-        this.flashMessage.show("Yeah, you just joined a trip !", { cssClass: 'alert-success', timeout: 3000 });
+        this.flashMessage.show("You just joined a trip!", { cssClass: 'alert-success', timeout: 3000 });
       } else {
         this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
       }
