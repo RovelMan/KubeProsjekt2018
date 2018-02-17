@@ -38,7 +38,8 @@ const appRoutes: Routes = [
   {path:'my-trips', component: MyTripsComponent, canActivate: [AuthGuard]}, //Add canActivate to protect paths
   {path:'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]},
   {path:'make-trip', component: MakeTripComponent},
-  {path:'search-trip', component: SearchTripsComponent}
+  {path:'search-trip', component: SearchTripsComponent},
+  {path:'this-trip', component: ThisTripComponent}
 ]
 
 @NgModule({

@@ -8,7 +8,11 @@
       </div>
     </div>
     <div class="card-body">
-      <button class="btn btn-info" (click)="joinTrip(result._id)">Join</button>
+      <button class="btn btn-info" [routerLink]="['/this-trip', {tripId: result._id}]">Select trip</button>
     </div>
   </div>
 </div>
+
+
+
+<!-- <button class="btn btn-info" (click)="joinTrip(result._id)">Join</button> -->
