@@ -39,9 +39,6 @@ export class ResultsComponent implements OnChanges {
           console.log(err);
           return false;
         });
-    } else {
-      this.flashMessage.show("You are not logged in.", { cssClass: 'alert-warning', timeout: 3000 });
-
     }
 
   }
@@ -68,35 +65,7 @@ export class ResultsComponent implements OnChanges {
       }
     });
   }
-  
-  joinTrip(tripClickedId) {
-    if (this.authService.loggedIn()) {
 
-      this.authService.getProfile().subscribe(profile => {
-        this.passengerId = profile.id;
-      },
-        //Uncertain if we need this error check, but think it's good practice.
-        err => {
-          console.log(err);
-          return false;
-        });
-
-      const joinTripInput = {
-        passengerId: this.passengerId,
-        tripId: tripClickedId
-      }
-      this.tripHandler.joinTrip(joinTripInput).subscribe(data => {
-        if (data.success) {
-          this.flashMessage.show("Yeah, you just joined a trip !", { cssClass: 'alert-success', timeout: 3000 });
-        } else {
-          this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
-        }
-      });
-    } else {
-      this.flashMessage.show("You are not logged in.", { cssClass: 'alert-warning', timeout: 3000 });
-
-    }
-  }
 
   sendMessageToDriver(messageText) {
     console.log(messageText);

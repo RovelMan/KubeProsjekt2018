@@ -33,9 +33,7 @@ export class ThisTripComponent implements OnInit {
           console.log(err);
           return false;
         });
-    } else {
-      this.flashMessage.show("You are not logged in.", { cssClass: 'alert-warning', timeout: 3000 });
-    }
+    } 
     this.theId = this.route.snapshot.params['tripId'];
     this.findTheTripById(this.theId);
   }
