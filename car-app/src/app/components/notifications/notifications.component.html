@@ -1,0 +1,10 @@
+<div class= "jumbotron">
+  <div *ngFor="let notification of myNotifications">
+    <ul>
+    <div *ngIf="notification.type == 'madeTrip'">
+      <li>You have made a trip! Date: {{notification.date | date: 'medium'}}</li>
+    </div>
+    </ul>
+    
+  </div>
+</div>

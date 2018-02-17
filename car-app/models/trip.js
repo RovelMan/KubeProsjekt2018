@@ -33,8 +33,14 @@ const TripSchema = mongoose.Schema({
 const Trip = module.exports = mongoose.model('Trip', TripSchema);
 
 
-module.exports.addTrip = function (newTrip, callback) {
-    newTrip.save(callback);
+module.exports.addTrip = function (newTrip, res, callback) {
+    newTrip.save((err, trip) => { 
+        if (err) {
+        res.json({ success: false, msg: 'Failed to add trip'});
+    } else {
+        res.json({ success: true, msg: 'Trip added', tripSaved: trip });
+    }
+    });
 }
 
 
@@ -99,7 +105,6 @@ module.exports.joinTrip = function(tripAndPassenger, res, callback) {
 }
 
 module.exports.deleteTrip = function(deleteTrip, res, callback) {
-    console.log(deleteTrip.tripId);
     Trip.findByIdAndRemove(deleteTrip.tripId, (err) => {  
         if (err) {
             res.json({ success: false, msg: 'You have encountered an error' });

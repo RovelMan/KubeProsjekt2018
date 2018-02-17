@@ -19,13 +19,7 @@ router.post('/addtrip', (req, res, next) => {
         driverId: req.body.driverId,
         passengersId: []
     })
-    Trip.addTrip(newTrip, (err, trip) => {
-        if (err) {
-            res.json({ success: false, msg: 'Failed to add trip' });
-        } else {
-            res.json({ success: true, msg: 'Trip added' });
-        }
-    })
+    Trip.addTrip(newTrip, res, (err, trip) => { })
 });
 
 router.post('/findtrips', (req, res, next) => {
@@ -33,7 +27,6 @@ router.post('/findtrips', (req, res, next) => {
         from: req.body.from,
         to: req.body.to
     })
-    console.log('in trips.js');
     Trip.findTripFromDest(thisTrip, res, (err, trip) => { })
 });
 

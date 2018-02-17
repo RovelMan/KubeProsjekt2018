@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TripHandlerService } from '../../services/trip-handler.service';
 import { AuthService } from '../../services/auth.service';
 
-
+import { NotificationsHandlerService } from '../../services/notifications-handler.service'
 
 @Component({
   selector: 'app-make-trip',
@@ -31,7 +31,7 @@ export class MakeTripComponent implements OnInit {
   pictureFile: File;
 
   user: Object;
-  id: String;
+  userId: String;
 
   isCompleted: boolean;
 
@@ -41,7 +41,8 @@ export class MakeTripComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private tripHandlerService: TripHandlerService,
-    private authService: AuthService
+    private authService: AuthService,
+    private notificationsHandler: NotificationsHandlerService
 
   ) { }
 
@@ -52,20 +53,24 @@ export class MakeTripComponent implements OnInit {
     if (this.authService.loggedIn()) {
       this.authService.getProfile().subscribe(profile => {
         this.user = profile.user;
-        this.id = profile.id;
+        this.userId = profile.id;
 
         const trip = {
           from: from,
           to: to,
           maxPassengers: passengers,
           date: date,
-          driverId: this.id
+          driverId: this.userId
         }
         // Register trip
         this.tripHandlerService.addTrip(trip).subscribe(data => {
           if (data.success) {
             this.flashMessage.show("You have now added a trip to the cloud", { cssClass: 'alert-success', timeout: 3000 });
+            console.log(data.tripSaved._id);
+            this.addNotificationMadeTrip(data.tripSaved._id);
             this.router.navigate(['/my-profile']);
+
+
           } else {
             this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
             this.router.navigate(['/make-trip']);
@@ -81,10 +86,27 @@ export class MakeTripComponent implements OnInit {
     } else {
       this.flashMessage.show("Not logged in!", { cssClass: 'alert-danger', timeout: 3000 });
     }
-
-
-
   }
+  addNotificationMadeTrip(tripId) {
+    const notification = {
+      type: 'madeTrip',
+      userIds: [this.userId],
+      date: Date.now(),
+      data: {
+        tripId: tripId,
+      }
+    }
+    this.notificationsHandler.addNotification(notification).subscribe(data => {
+      if (data.success) {
+        this.flashMessage.show("You have now added a notification", { cssClass: 'alert-success', timeout: 3000 });
+      } else {
+        this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
+      }
+    });
+  }
+
+
+
 
   setFirstField(from: string, to: string, passengers: number, date: string) {
     this.fromDest = from;
