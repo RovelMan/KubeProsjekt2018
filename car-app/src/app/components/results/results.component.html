@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="card-body">
-      <button class="btn btn-info" (click)="joinTrip(result._id)">Join</button>
+      <button class="btn btn-info" [routerLink]="['/this-trip', {tripId: result._id}]">Select trip</button>
       <h6>Send message to driver (only works if he has an id): id = {{result.driverId}}</h6>
       <button (click)="open({driverId: result.driverId, tripId: result._id}, content)">Send message</button>
     </div>
@@ -32,6 +32,3 @@
       <button type="button" class="btn btn-outline-dark" (click)="c({text: undefined, func: 'close'})">Close</button>
     </div>
   </ng-template>
-  
-  
-  

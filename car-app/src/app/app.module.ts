@@ -31,6 +31,7 @@ import { UserHandlerService } from './services/user-handler.service';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MessagesHandlerService } from './services/messages-handler.service';
 
+import { FormWizardModule } from 'angular2-wizard';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgbModal, ModalDismissReasons, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationsComponent } from './components/notifications/notifications.component';
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
   {path:'my-trips', component: MyTripsComponent, canActivate: [AuthGuard]}, //Add canActivate to protect paths
   {path:'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]},
   {path:'make-trip', component: MakeTripComponent},
-  {path:'search-trip', component: SearchTripsComponent}
+  {path:'search-trip', component: SearchTripsComponent},
+  {path:'this-trip', component: ThisTripComponent}
 ]
 
 @NgModule({
@@ -78,9 +80,9 @@ const appRoutes: Routes = [
       libraries: ["places"]
     }),
     ReactiveFormsModule,
+    FormWizardModule,
     BrowserAnimationsModule,
-    
-    NgbModule.forRoot(),
+    NgbModule.forRoot()
   ],
   
   providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, MessagesHandlerService, NgbModal, NotificationsHandlerService],
