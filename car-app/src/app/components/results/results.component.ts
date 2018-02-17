@@ -19,6 +19,7 @@ export class ResultsComponent implements OnChanges {
   closeResult: string;
   selectedTripId: string;
 
+
   constructor(
     private tripHandler: TripHandlerService,
     private flashMessage: FlashMessagesService,
@@ -67,7 +68,7 @@ export class ResultsComponent implements OnChanges {
       }
     });
   }
-
+  
   joinTrip(tripClickedId) {
     if (this.authService.loggedIn()) {
 
@@ -142,8 +143,5 @@ export class ResultsComponent implements OnChanges {
       return `with: ${reason}`;
     }
   }
-
-
-
 }
 

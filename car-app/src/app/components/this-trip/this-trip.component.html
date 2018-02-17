@@ -1,3 +1,52 @@
-<p>
-  this-trip works!
-</p>
+<div id="wholeTrip" class="jumbotron text-center">
+  <h2>
+    {{theTrip.from}} -> {{theTrip.to}}
+  </h2>
+  <table class="table">
+    <tbody>
+      <tr class="table-info">
+        <th scope="row">Driver</th>
+        <td>{{theTrip.driverId}}</td>
+      </tr>
+      <tr class="table-info">
+        <th scope="row">Date</th>
+        <td>{{theTrip.date}}</td>
+      </tr>
+      <tr class="table-info">
+        <th scope="row">Max Passengers</th>
+        <td>{{theTrip.maxPassengers}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="table">
+    <tbody>
+      <tr class="table-success">
+        <div *ngFor="let passenger of theTrip.passengerIds; let i = index">
+          <th scope="row">Passenger {{i + 1}}</th>
+          <td>{{passenger}}</td>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-info" [routerLink]="['/my-trips']" (click)="joinTrip(theTrip._id)">Join</button>
+
+</div>
+
+<!--
+<div class="aResult" *ngFor="let result of resultsArray">
+    <div class="card border-success mb-3">
+      <div class="card-header">
+        <h5 class="card-title">{{result.from}} -> {{result.to}}</h5>
+        <p></p>
+        <div *ngFor="let id of result.passengerIds">
+          <p>Passengers ids: {{id}}</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <button class="btn btn-info" [routerLink]="['/this-trip', {tripId: result._id}]">Select trip</button>
+      </div>
+    </div>
+  </div>
+
+-->
