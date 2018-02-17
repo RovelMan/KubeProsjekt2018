@@ -94,7 +94,7 @@
     </wizard-step>
 
 
-    <wizard-step [title]="'EXTRAS'" (onComplete)="setThirdField()">
+    <wizard-step [title]="'EXTRAS'" (onComplete)="onClickSubmit(from.value, to.value, passengers.value, date.value)">
       <div [ngSwitch]="isCompleted">
         <div *ngSwitchDefault>
           <div class="fieldBody">
