@@ -83,7 +83,7 @@ export class MakeTripComponent implements OnInit {
   addNotificationMadeTrip(tripId) {
     const notification = {
       type: 'madeTrip',
-      userId: this.userId,
+      userIds: [this.userId],
       date: Date.now(),
       data: {
         tripId: tripId,

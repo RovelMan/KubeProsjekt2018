@@ -7,8 +7,8 @@ const NotificationSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    userId: {
-        type: String,
+    userIds: {
+        type: [String],
         required: true
     },
     date: {
@@ -20,6 +20,10 @@ const NotificationSchema = mongoose.Schema({
             
         },
         required: true
+    },
+    seen: {
+        type: Boolean,
+        required: true
     }
 
     
@@ -29,4 +33,14 @@ const Notification = module.exports = mongoose.model('Notification', Notificatio
 
 module.exports.addNotification = function (newNotification, callback) {
     newNotification.save(callback);
+}
+module.exports.findMyNotifications = function(userId, res, callback) {
+    const query = {"userIds": userId };
+    Notification.find(query, (err, notifications) => {
+        if (err) {
+            res.json({ success: false, msg: 'You have encountered an error' });
+        } else {
+            res.json({ success: true, msg: 'You have found all your notifications', notificationsFound: notifications });
+        }
+    }); 
 }

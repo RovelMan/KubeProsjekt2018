@@ -10,9 +10,10 @@ router.post('/addNotification', (req, res, next) => {
     let newNotification = new Notification({
 
         type: req.body.type,
-        userId: req.body.userId,
+        userIds: req.body.userIds,
         date: req.body.date,
-        data: req.body.data
+        data: req.body.data,
+        seen: false
     })
     Notification.addNotification(newNotification, (err, notification) => {
         if (err) {
@@ -23,7 +24,10 @@ router.post('/addNotification', (req, res, next) => {
     })
 });
 
-
+router.post('/findMyNotifications', (req, res, next) => {
+    let userId = new String(req.body.userId);
+    Notification.findMyNotifications(userId, res, (err, notification) => { })
+});
 
 
 

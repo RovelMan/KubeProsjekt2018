@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
-
+import { NotificationsComponent } from '../notifications/notifications.component';
 
 @Component({
   selector: 'app-home',

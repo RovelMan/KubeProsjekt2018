@@ -13,4 +13,11 @@ export class NotificationsHandlerService {
     return this.http.post('http://localhost:3000/notifications/addNotification', notification, {headers: headers})
       .map(res => res.json());
   }
+
+  findMyNotifications(userId) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/notifications/findMyNotifications', userId, {headers: headers}) 
+      .map(res => res.json());
+  }
 }

@@ -27,7 +27,6 @@ router.post('/findtrips', (req, res, next) => {
         from: req.body.from,
         to: req.body.to
     })
-    console.log('in trips.js');
     Trip.findTripFromDest(thisTrip, res, (err, trip) => { })
 });
 
