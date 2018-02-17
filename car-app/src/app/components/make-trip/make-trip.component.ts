@@ -15,6 +15,11 @@ import { AuthService } from '../../services/auth.service';
 })
 export class MakeTripComponent implements OnInit {
 
+  fromDest: String;
+  toDest: String;
+  maxPassengers: Number;
+  date: String;
+
   carModel: String;
   carFuel: String;
   otherInfo: String;
@@ -27,6 +32,8 @@ export class MakeTripComponent implements OnInit {
 
   user: Object;
   id: String;
+
+  isCompleted: boolean;
 
   constructor(
     private validateService: ValidateService,
@@ -77,6 +84,25 @@ export class MakeTripComponent implements OnInit {
 
 
 
+  }
+
+  setFirstField(from: string, to: string, passengers: number, date: string) {
+    this.fromDest = from;
+    this.toDest = to;
+    this.maxPassengers = passengers;
+    this.date = date;
+    console.log(from, to, passengers, date);
+  }
+
+  setSecondField(model: string, animals: boolean, childseat: boolean, baggagespace: boolean) {
+    this.carModel = model;
+    console.log(model, animals, childseat, baggagespace);
+  }
+
+  setThirdField() {
+    this.otherInfo = "done";
+    console.log(this.otherInfo);
+    this.isCompleted = true;
   }
 
   validateFields() {

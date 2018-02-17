@@ -29,6 +29,8 @@ import { ResultsComponent } from './components/results/results.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { UserHandlerService } from './services/user-handler.service';
 
+import { FormWizardModule } from 'angular2-wizard';
+
 
 
 const appRoutes: Routes = [
@@ -68,7 +70,8 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyDJ6bgMFGFSNMn9ygEip7Gwg9gPvOV42nY',
       libraries: ["places"]
     }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormWizardModule
   ],
   providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService],
   bootstrap: [AppComponent]
