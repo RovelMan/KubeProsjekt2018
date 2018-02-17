@@ -28,7 +28,11 @@ import { TripHandlerService } from './services/trip-handler.service';
 import { ResultsComponent } from './components/results/results.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { UserHandlerService } from './services/user-handler.service';
+import { MessagesComponent } from './components/messages/messages.component';
+import { MessagesHandlerService } from './services/messages-handler.service';
 
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NgbModal, ModalDismissReasons, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const appRoutes: Routes = [
@@ -56,7 +60,10 @@ const appRoutes: Routes = [
     SearchBarComponent,
     MapComponent,
     ResultsComponent,
-    FilterComponent
+    FilterComponent,
+    MessagesComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
@@ -68,9 +75,13 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyDJ6bgMFGFSNMn9ygEip7Gwg9gPvOV42nY',
       libraries: ["places"]
     }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    
+    NgbModule.forRoot(),
   ],
-  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService],
+  
+  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, MessagesHandlerService, NgbModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
