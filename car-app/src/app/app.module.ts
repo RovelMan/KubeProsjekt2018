@@ -33,7 +33,8 @@ import { MessagesHandlerService } from './services/messages-handler.service';
 
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgbModal, ModalDismissReasons, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { NotificationsHandlerService } from './services/notifications-handler.service';
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent}, //må sørge for at alle sider blir ført hit
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
     ResultsComponent,
     FilterComponent,
     MessagesComponent,
+    NotificationsComponent,
     
     
   ],
@@ -81,7 +83,7 @@ const appRoutes: Routes = [
     NgbModule.forRoot(),
   ],
   
-  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, MessagesHandlerService, NgbModal],
+  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, MessagesHandlerService, NgbModal, NotificationsHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

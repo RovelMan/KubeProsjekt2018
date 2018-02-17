@@ -1,0 +1,29 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-notifications',
+  templateUrl: './notifications.component.html',
+  styleUrls: ['./notifications.component.css']
+})
+export class NotificationsComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+/*
+trip ended
+passenger joined
+passenger left
+trip made 
+your next trip
+trip full
+trip closed
+trip feedback received
+
+
+
+
+*/

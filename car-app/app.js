@@ -24,7 +24,7 @@ const app = express();
 const users = require('./routes/users');
 const trips = require('./routes/trips');
 const messages = require('./routes/messages');
-
+const notifications = require('./routes/notifications');
 
 
 
@@ -49,6 +49,7 @@ require('./config/passport')(passport);
 app.use('/users', users);
 app.use('/trips', trips);
 app.use('/messages', messages);
+app.use('/notifications', notifications);
 
 // Index Route
 app.get('/', (req, res) => {
