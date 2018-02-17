@@ -69,6 +69,16 @@ module.exports.findMyTripsAsDriver = function(passengerId, res, callback) {
     }); 
 }
 
+module.exports.findMyTripById = function(tripIdParameter, res, callback) {
+    Trip.findById(tripIdParameter, (err, trip) => {
+        if (err) {
+            res.json({ success: false, msg: 'You have encountered an error' });
+        } else {
+            res.json({ success: true, msg: 'You have found the trip', tripFound: trip });
+        }
+    }); 
+}
+
 module.exports.joinTrip = function(tripAndPassenger, res, callback) {
     
     Trip.findById(tripAndPassenger.tripId, (err, trip) => {

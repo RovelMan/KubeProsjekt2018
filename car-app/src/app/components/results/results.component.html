@@ -8,7 +8,27 @@
       </div>
     </div>
     <div class="card-body">
-      <button class="btn btn-info" (click)="joinTrip(result._id)">Join</button>
+      <button class="btn btn-info" [routerLink]="['/this-trip', {tripId: result._id}]">Select trip</button>
+      <h6>Send message to driver (only works if he has an id): id = {{result.driverId}}</h6>
+      <button (click)="open({driverId: result.driverId, tripId: result._id}, content)">Send message</button>
     </div>
   </div>
+  
+  
 </div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title">Message to the driver:</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+     <input type="text" #messageText>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c({text: messageText.value, func: 'send'})">Send</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c({text: undefined, func: 'close'})">Close</button>
+    </div>
+  </ng-template>
