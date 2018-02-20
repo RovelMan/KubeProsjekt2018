@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { ValidateService } from '../../services/validate.service'
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { TripHandlerService } from '../../services/trip-handler.service';
 import { AuthService } from '../../services/auth.service';
+//import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
 
 import { NotificationsHandlerService } from '../../services/notifications-handler.service'
+
+declare var google;
 
 @Component({
   selector: 'app-make-trip',
@@ -35,6 +39,9 @@ export class MakeTripComponent implements OnInit {
 
   isCompleted: boolean;
 
+  @ViewChild("from") searchFromElementRef: ElementRef;
+  @ViewChild("to") searchToElementRef: ElementRef;
+
   constructor(
     private validateService: ValidateService,
     private flashMessage: FlashMessagesService,
@@ -42,11 +49,21 @@ export class MakeTripComponent implements OnInit {
     private route: ActivatedRoute,
     private tripHandlerService: TripHandlerService,
     private authService: AuthService,
-    private notificationsHandler: NotificationsHandlerService
+    private notificationsHandler: NotificationsHandlerService,
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
 
   ) { }
 
   ngOnInit() {
+    this.mapsAPILoader.load().then(() => {
+      let autocompleteOne = new google.maps.places.Autocomplete(this.searchFromElementRef.nativeElement, {
+        types: ["geocode"]
+      });
+      let autocompleteTwo = new google.maps.places.Autocomplete(this.searchToElementRef.nativeElement, {
+        types: ["geocode"]
+      });
+    });
   }
 
   onClickSubmit(from: string, to: string, passengers: number, date: string) {
