@@ -29,11 +29,13 @@
     </tbody>
   </table>
 
-  <button class="btn btn-info" [routerLink]="['/my-trips']" (click)="joinTrip(theTrip._id)">Join</button>
-
+  <button class="btn btn-info" *ngIf="(theTrip.maxPassengers-theTrip.passengerIds.length>0)" [routerLink]="['/my-trips']" (click)="joinTrip(theTrip._id)">Join</button>
+  <div *ngIf="theTrip.maxPassengers-theTrip.passengerIds.length<1">This trip is full</div>
 </div>
 
 <!--
+
+  (theTrip.maxPassengers-theTrip.passengerIds.length>0)
 <div class="aResult" *ngFor="let result of resultsArray">
     <div class="card border-success mb-3">
       <div class="card-header">

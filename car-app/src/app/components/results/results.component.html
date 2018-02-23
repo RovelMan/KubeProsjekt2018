@@ -2,7 +2,7 @@
   <div class="card border-success mb-3">
     <div class="card-header">
       <h5 class="card-title">{{result.from}} -> {{result.to}}</h5>
-      <p></p>
+      <p>There is room for {{result.maxPassengers-result.passengerIds.length}} passengers</p>
       <div *ngFor="let id of result.passengerIds">
         <p>Passengers ids: {{id}}</p>
       </div>

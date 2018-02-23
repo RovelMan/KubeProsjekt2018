@@ -10,6 +10,8 @@
       </li>
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item ">
         <a class="nav-link" [routerLink]="['/make-trip']">Make a trip<span class="sr-only">(current)</span></a>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item ">
+          <a class="nav-link" [routerLink]="['/chat']">Chat<span class="sr-only">(current)</span></a>
       </li>
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item ">
         <a class="nav-link" [routerLink]="['/search-trip']">Find a trip<span class="sr-only">(current)</span></a>

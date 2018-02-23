@@ -12,3 +12,21 @@
 body {
     padding-top: 0.1px;
 }
+
+
+/* Styles for chat: */
+app-chat-form{
+    width: 100%;
+    display: flex;
+    white-space: nowrap;
+    overflow: none;
+}
+
+.message {
+  display: block;
+  height: auto;
+}
+app-chatroom {
+    display: flex;
+    flex-direction: column;
+}
