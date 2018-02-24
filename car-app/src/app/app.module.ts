@@ -54,6 +54,7 @@ import { SignupFormChatComponent } from './components/signup-form-chat/signup-fo
 import { AuthServiceChatService } from './services/auth-service-chat.service';
 import { LoginChatComponent } from './components/login-chat/login-chat.component';
 import { NavbarChatComponent } from './components/navbar-chat/navbar-chat.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 
 
@@ -98,6 +99,7 @@ const appRoutes: Routes = [
     SignupFormChatComponent,
     LoginChatComponent,
     NavbarChatComponent,
+    NotificationComponent,
     
     
   ],

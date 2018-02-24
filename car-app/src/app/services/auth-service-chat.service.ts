@@ -10,10 +10,12 @@ import { User } from '../../../models/user.model';
 export class AuthServiceChatService {
   private user: Observable<firebase.User>
   private authState: any;
+
   constructor(
     private afAuth: AngularFireAuth, 
     private db: AngularFireDatabase, 
-    private router: Router) {
+    private router: Router
+  ) {
       this.user= afAuth.authState;
      }
   authUser() {
@@ -23,13 +25,15 @@ export class AuthServiceChatService {
     return this.authState !==null ? this.authState.uid : '';
   }
   login(email: string, password: string) {
+    console.log('in login in authservice')
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
-    .then((resolve)=> {
-      const status='online';
-      this.setUserStatus(status);
+    .then((user) => {
+      this.authState = user;
+      this.setUserStatus('online');
       this.router.navigate(['chat']);
-    })
+    });
   }
+
   signUp( email: string, password: string, displayName: string) {
     console.log('about to sign up')
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
@@ -51,7 +55,9 @@ export class AuthServiceChatService {
     .catch(error => console.log(error));
   }
 
-  setUserStatus( status: string): void {
+  setUserStatus(status: string): void {
+    console.log('in setuserstatus in authservice')
+
     const path = `users/${this.currentUserId}`;
     const data = {
       status: status
@@ -59,11 +65,9 @@ export class AuthServiceChatService {
     this.db.object(path).update(data)
         .catch(error => console.log(error));
     
-    //Method unfinished, will be done in part 3.
   }
   logout() {
     this.afAuth.auth.signOut();
-    this.router.navigate(['login-chat']);
   }
 
 

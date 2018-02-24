@@ -14,8 +14,7 @@ export class UserItemComponent implements OnInit {
   
   ngOnInit(user = this.user) {
     this.displayName = user.displayName;
-    this.email = user.email;
-  
+    this.email = user.email; 
 }
 
 }
