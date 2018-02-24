@@ -17,29 +17,36 @@ export class ChatService {
   constructor(
     private db: AngularFireDatabase,
     private afAuth: AngularFireAuth
-    ) { 
-        this.afAuth.authState.subscribe(auth => {
-          if (auth !== undefined && auth !== null) {
-            this.user = auth;
-          }
+  ) {
+    this.afAuth.authState.subscribe(auth => {
+      if (auth !== undefined && auth !== null) {
+        this.user = auth;
+      }
+      if (this.user) {
+        this.getUser().subscribe(a => {
+          this.userName = a.displayName;
+        });
+      }
+      
+    });
 
-          this.getUser().subscribe(a => {
-            this.userName = a.displayName;
-          });
-        }); 
+  }
+
+  getUser() {
+    if (this.user) {
+      const userId = this.user.uid;
+      const path = `/users/${userId}`;
+      return this.db.object(path);
     }
     
-  getUser() {
-    const userId = this.user.uid;
-    const path = `/users/${userId}`;
-    return this.db.object(path);
   }
+
 
   getUsers() {
     const path = '/users';
     return this.db.list(path);
   }
-  
+
 
   sendMessage(msg: string) {
     const timestamp = this.getTimeStamp();
@@ -49,27 +56,24 @@ export class ChatService {
       message: msg,
       timeSent: timestamp,
       userName: this.userName,
-      email: email });
+      email: email
+    });
   }
 
   getMessages(): FirebaseListObservable<ChatMessage[]> {
     // query to create our message feed binding
-    return this.db.list('messages', {
-      query: {
-        limitToLast: 25,
-        orderByKey: true
-      }
-    });
+    return this.db.list('/messages');
+    
   }
 
   getTimeStamp() {
     const now = new Date();
     const date = now.getUTCFullYear() + '/' +
-                 (now.getUTCMonth() + 1) + '/' +
-                 now.getUTCDate();
+      (now.getUTCMonth() + 1) + '/' +
+      now.getUTCDate();
     const time = now.getUTCHours() + ':' +
-                 now.getUTCMinutes() + ':' +
-                 now.getUTCSeconds();
+      now.getUTCMinutes() + ':' +
+      now.getUTCSeconds();
 
     return (date + ' ' + time);
   }

@@ -55,8 +55,15 @@ export class AuthServiceChatService {
     const path = `users/${this.currentUserId}`;
     const data = {
       status: status
-    }
+    };
+    this.db.object(path).update(data)
+        .catch(error => console.log(error));
+    
     //Method unfinished, will be done in part 3.
+  }
+  logout() {
+    this.afAuth.auth.signOut();
+    this.router.navigate(['login-chat']);
   }
 
 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-user-item',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-item.component.css']
 })
 export class UserItemComponent implements OnInit {
-
+  @Input() user: firebase.User
+  displayName: string;
+  email: string;
   constructor() { }
-
-  ngOnInit() {
-  }
+  
+  ngOnInit(user = this.user) {
+    this.displayName = user.displayName;
+    this.email = user.email;
+  
+}
 
 }
