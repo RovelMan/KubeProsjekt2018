@@ -43,7 +43,6 @@ import { MessageComponent } from './components/message/message.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserItemComponent } from './components/user-item/user-item.component';
 import { ChatService } from './services/chat.service';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
@@ -51,6 +50,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+import { SignupFormChatComponent } from './components/signup-form-chat/signup-form-chat.component';
+import { AuthServiceChatService } from './services/auth-service-chat.service';
+import { LoginChatComponent } from './components/login-chat/login-chat.component';
+import { NavbarChatComponent } from './components/navbar-chat/navbar-chat.component';
 
 
 
@@ -63,7 +66,9 @@ const appRoutes: Routes = [
   {path:'make-trip', component: MakeTripComponent},
   {path:'search-trip', component: SearchTripsComponent},
   {path:'this-trip', component: ThisTripComponent},
-  {path:'chat', component: ChatroomComponent}
+  {path:'chat', component: ChatroomComponent},
+  {path: 'signup-form-chat', component: SignupFormChatComponent},
+  {path: 'login-chat', component: LoginChatComponent}
 ]
 
 @NgModule({
@@ -90,6 +95,9 @@ const appRoutes: Routes = [
     MessageComponent,
     UserListComponent,
     UserItemComponent,
+    SignupFormChatComponent,
+    LoginChatComponent,
+    NavbarChatComponent,
     
     
   ],
@@ -116,7 +124,7 @@ const appRoutes: Routes = [
     
   ],
   
-  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, MessagesHandlerService, NgbModal, NotificationsHandlerService, ChatService, AngularFireDatabase],
+  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, MessagesHandlerService, NgbModal, NotificationsHandlerService, ChatService, AngularFireDatabase, AuthServiceChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

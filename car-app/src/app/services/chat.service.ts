@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from '../services/auth.service';
+import { AuthServiceChatService } from '../services/auth-service-chat.service';
 import * as firebase from 'firebase/app';
 
 import { ChatMessage } from '../../../models/chat-message.model';
@@ -17,7 +17,7 @@ export class ChatService {
   constructor(
     private db: AngularFireDatabase,
     private afAuth: AngularFireAuth
-    ) { /*
+    ) { 
         this.afAuth.authState.subscribe(auth => {
           if (auth !== undefined && auth !== null) {
             this.user = auth;
@@ -26,9 +26,9 @@ export class ChatService {
           this.getUser().subscribe(a => {
             this.userName = a.displayName;
           });
-        }); */
+        }); 
     }
-    /*
+    
   getUser() {
     const userId = this.user.uid;
     const path = `/users/${userId}`;
@@ -39,16 +39,16 @@ export class ChatService {
     const path = '/users';
     return this.db.list(path);
   }
-  */
+  
 
   sendMessage(msg: string) {
     const timestamp = this.getTimeStamp();
-    const email = "torstein@torstein.no"; //this.user.email;
+    const email = this.user.email;
     this.chatMessages = this.getMessages();
     this.chatMessages.push({
       message: msg,
       timeSent: timestamp,
-      userName: "Torstein", //this.userName
+      userName: this.userName,
       email: email });
   }
 
