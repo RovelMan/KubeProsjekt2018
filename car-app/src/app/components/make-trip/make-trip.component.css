@@ -20,3 +20,33 @@
 .form-group {
 	margin: 2px;
 }
+
+#formWizard >>> .card {
+	background-color: #f7f7f9;
+	border: 0px;
+}
+
+#formWizard >>> .card >>> .card-header {
+	background-color: #f7f7f9;
+}
+#formWizard >>> .card >>> .card-header >>> .nav-item {
+	margin: auto;
+}
+
+#formWizard >>> .card >>> .card-block {
+	background-color: #f7f7f9;
+}
+
+#formWizard >>> .card >>> .card-footer {
+	background-color: #f7f7f9;
+}
+#formWizard >>> .card >>> .card-footer >>> .btn-secondary {
+	background-color: black;
+	color: white;
+}
+
+
+#buttons {
+	display: flex;
+	justify-content: center;
+}

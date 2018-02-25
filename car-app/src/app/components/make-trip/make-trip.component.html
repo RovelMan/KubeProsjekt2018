@@ -1,6 +1,6 @@
 <div class="jumbotron">
   <h2>Make your own trip</h2>
-  <form-wizard>
+  <form-wizard id="formWizard">
 
 
     <wizard-step [title]="'TRIP DETAILS'" (onNext)="setFirstField(from.value, to.value, passengers.value, date.value)">
@@ -128,8 +128,10 @@
               </div>
             </div>
           </div>
-          <input type="reset" class="formNext btn btn-danger" value="Reset form">
-          <button type="button" class="formNext btn btn-info" (click)="onClickSave()" name="save" value="Save">Save</button>
+          <div id="buttons">
+            <input type="reset" class="btn btn-danger" value="Reset form">
+            <button type="button" class="btn btn-info" (click)="onClickSave()" name="save" value="Save">Save</button>
+          </div>
         </div>
         <div *ngSwitchCase="true">
           <h4>Thank you! You have completed all the steps.</h4>
