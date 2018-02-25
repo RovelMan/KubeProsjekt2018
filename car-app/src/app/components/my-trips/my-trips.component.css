@@ -7,8 +7,8 @@
     flex-direction: row;
     margin: auto;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 .aResult {
     padding: 2em;
-
 }

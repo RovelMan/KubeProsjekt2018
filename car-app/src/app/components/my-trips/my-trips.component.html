@@ -1,30 +1,30 @@
 <div id="myTrips" class="jumbotron">
   <h2 class="page-header">My trips</h2>
   <p>Here are your trips!</p>
+  <hr class="my-4">
   <div id="resultsBody">
     <div>
       <h2>Passenger</h2>
       <div class="aResult" *ngFor="let result of myTripsPassenger">
-        <div class="card border-success mb-3">
+        <div class="card border-primary mb-3">
           <div class="card-header">
             <h5 class="card-title">{{result.from}} -> {{result.to}}</h5>
           </div>
           <div class="card-body">
-              
+              <!---->
           </div>
         </div>
       </div>
     </div>
     <div>
       <h2>Driving</h2>
-
       <div class="aResult" *ngFor="let result of myTripsDriver">
-        <div class="card border-warning mb-3">
+        <div class="card border-secondary mb-3">
           <div class="card-header">
             <h5 class="card-title">{{result.from}} -> {{result.to}}</h5>
           </div>
           <div class="card-body">
-              <button (click)="deleteTrip(result._id)">Delete</button>
+              <button class="btn btn-danger" (click)="deleteTrip(result._id)">Delete</button>
           </div>
         </div>
       </div>
