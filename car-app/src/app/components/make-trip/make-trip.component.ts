@@ -5,11 +5,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { TripHandlerService } from '../../services/trip-handler.service';
 import { AuthService } from '../../services/auth.service';
-//import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
-
 import { NotificationsHandlerService } from '../../services/notifications-handler.service'
-
 declare var google;
 
 @Component({
@@ -25,14 +22,15 @@ export class MakeTripComponent implements OnInit {
   date: String;
 
   carModel: String;
-  carFuel: String;
+  animals: boolean = false;
+  childSeat: boolean = false;
+  baggageSpace: boolean = false;
+  carFuel: String = "petrolDiesel";
+
   otherInfo: String;
 
-  animals: Boolean;
-  childSeat: Boolean;
-  baggageSpace: Boolean;
-  pictureChoice: String;
-  pictureFile: File;
+  //pictureChoice: String;
+  //pictureFile: File;
 
   user: Object;
   userId: String;
@@ -52,7 +50,6 @@ export class MakeTripComponent implements OnInit {
     private notificationsHandler: NotificationsHandlerService,
     private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone
-
   ) { }
 
   ngOnInit() {
@@ -66,17 +63,21 @@ export class MakeTripComponent implements OnInit {
     });
   }
 
-  onClickSubmit(from: string, to: string, passengers: number, date: string) {
+  onClickSubmit() {
+    console.log("SUBMIT DATA START");
+    console.log(this.fromDest, this.toDest, this.maxPassengers, this.date);
+    console.log(this.carModel, this.animals, this.childSeat, this.baggageSpace, this.carFuel);
+    console.log(this.otherInfo);
+    console.log("SUBMIT DATA END");
     if (this.authService.loggedIn()) {
       this.authService.getProfile().subscribe(profile => {
         this.user = profile.user;
         this.userId = profile.id;
-
         const trip = {
-          from: from,
-          to: to,
-          maxPassengers: passengers,
-          date: date,
+          from: this.fromDest,
+          to: this.toDest,
+          maxPassengers: this.maxPassengers,
+          date: this.date,
           driverId: this.userId
         }
         // Register trip
@@ -86,15 +87,12 @@ export class MakeTripComponent implements OnInit {
             console.log(data.tripSaved._id);
             this.addNotificationMadeTrip(data.tripSaved._id);
             this.router.navigate(['/my-profile']);
-
-
           } else {
             this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
             this.router.navigate(['/make-trip']);
           }
         });
       },
-
         //Uncertain if we need this error check, but think it's good practice.
         err => {
           console.log(err);
@@ -104,6 +102,7 @@ export class MakeTripComponent implements OnInit {
       this.flashMessage.show("Not logged in!", { cssClass: 'alert-danger', timeout: 3000 });
     }
   }
+
   addNotificationMadeTrip(tripId) {
     const notification = {
       type: 'madeTrip',
@@ -122,9 +121,6 @@ export class MakeTripComponent implements OnInit {
     });
   }
 
-
-
-
   setFirstField(from: string, to: string, passengers: number, date: string) {
     this.fromDest = from;
     this.toDest = to;
@@ -133,50 +129,40 @@ export class MakeTripComponent implements OnInit {
     console.log(from, to, passengers, date);
   }
 
-  setSecondField(model: string, animals: boolean, childseat: boolean, baggagespace: boolean) {
+  setSecondField(model: string) {
     this.carModel = model;
-    console.log(model, animals, childseat, baggagespace);
+    console.log(model, this.animals, this.childSeat, this.baggageSpace, this.carFuel);
   }
 
-  setThirdField() {
-    this.otherInfo = "done";
+  setThirdField(otherInfo: string) {
+    this.otherInfo = otherInfo;
     console.log(this.otherInfo);
     this.isCompleted = true;
   }
 
+  setFuel(fuel: string) {
+    this.carFuel = fuel;
+  }
+
   validateFields() {
     const trip = {
-
       carModel: this.carModel,
       carFuel: this.carFuel,
       otherInfo: this.otherInfo,
-
       animals: this.animals,
       childSeat: this.childSeat,
       baggageSpace: this.baggageSpace,
-      pictureChoice: this.pictureChoice,
-      pictureFile: this.pictureFile
-      //functionalities: 
+      //pictureChoice: this.pictureChoice,
+      //pictureFile: this.pictureFile
     }
-
-
-
-    if (!this.validateService.validateMakeTrip(trip)) {
-      return false;
-    } else {
-      return true;
-    }
+    return this.validateService.validateMakeTrip(trip);
   }
 
-
-
-  onClickSave() {
+  /*onClickSave() {
     const trip = {
-
       carModel: this.carModel,
       carFuel: this.carFuel,
       otherInfo: this.otherInfo,
-
       animals: this.animals,
       childSeat: this.childSeat,
       baggageSpace: this.baggageSpace,
@@ -188,22 +174,14 @@ export class MakeTripComponent implements OnInit {
     this.router.navigate(['/my-trips']); //Some problems with navigation because of auto scroll
   }
 
-
-
-
   onFileChange(fileInput: any) {
     this.pictureFile = fileInput.target.files[0];
-
     let reader = new FileReader();
-
     reader.onload = (e: any) => {
       this.pictureFile = e.target.result;
     }
-
     reader.readAsDataURL(fileInput.target.files[0]);
   }
-
-
 
   onAnchorClick() {
     this.route.fragment.subscribe(f => {
@@ -214,11 +192,9 @@ export class MakeTripComponent implements OnInit {
 
   changePath() {
     const trip = {
-
       carModel: this.carModel,
       carFuel: this.carFuel,
       otherInfo: this.otherInfo,
-
       animals: this.animals,
       childSeat: this.childSeat,
       baggageSpace: this.baggageSpace,
@@ -226,7 +202,8 @@ export class MakeTripComponent implements OnInit {
       pictureFile: this.pictureFile
     }
     console.log('before if')
-  }
+  }*/
+
 }
 
     /*
@@ -243,12 +220,3 @@ export class MakeTripComponent implements OnInit {
       return false;
     }
     */
-
-
-
-
-
-
-
-
-

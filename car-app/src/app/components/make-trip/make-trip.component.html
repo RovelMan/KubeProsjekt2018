@@ -39,7 +39,7 @@
     </wizard-step>
 
 
-    <wizard-step [title]="'CAR DETAILS'" (onNext)="setSecondField(model.value, animals.value, childseat.value, baggagespace.value)">
+    <wizard-step [title]="'CAR DETAILS'" (onNext)="setSecondField(model.value)">
       <div class="fieldBody">
         <div class="fieldElem">
           <div class="form-group">
@@ -52,17 +52,17 @@
             <label>Features</label>
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="false" id="feature1" #animals>I allow passengers to bring small animals
+                <input class="form-check-input" type="checkbox" id="feature1" [(ngModel)]="animals" name="animalsFeature">I allow passengers to bring small animals
               </label>
             </div>
             <div class="form-check disabled">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="false" id="feature2" #childseat>I have a childSeat
+                <input class="form-check-input" type="checkbox" id="feature2" [(ngModel)]="childSeat" name="childFeature">I have a childSeat
               </label>
             </div>
             <div class="form-check disabled">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="false" id="feature3" #baggagespace>I have room for a suitcase
+                <input class="form-check-input" type="checkbox" id="feature3" [(ngModel)]="baggageSpace" name="baggageFeature">I have room for a suitcase
               </label>
             </div>
           </div>
@@ -70,22 +70,22 @@
             <label>What does your car run on?</label>
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input" name="carfield" type="radio" value="petrolDiesel" id="carFuel1" checked="" #carfuel>Petrol/diesel
+                <input class="form-check-input" name="fuelField" type="radio" value="petrolDiesel" id="carFuel1" (click)="setFuel(fuel1.value)" #fuel1 checked>Petrol/diesel
               </label>
             </div>
             <div class="form-check">
               <label class="form-check-label">
-                <input class="form-check-input" name="carfield" type="radio" value="electrical" id="carFuel2" #carfuel>Electrical
+                <input class="form-check-input" name="fuelField" type="radio" value="electrical" id="carFuel2" (click)="setFuel(fuel2.value)" #fuel2>Electrical
               </label>
             </div>
             <div class="form-check disabled">
               <label class="form-check-label">
-                <input class="form-check-input" name="carfield" type="radio" value="hybrid" id="carFuel3" #carfuel>Hybrid
+                <input class="form-check-input" name="fuelField" type="radio" value="hybrid" id="carFuel3" (click)="setFuel(fuel3.value)" #fuel3>Hybrid
               </label>
             </div>
             <div class="form-check disabled">
               <label class="form-check-label">
-                <input class="form-check-input" name="carfield" type="radio" value="other" id="carFuel4" #carfuel>Other
+                <input class="form-check-input" name="fuelField" type="radio" value="other" id="carFuel4" (click)="setFuel(fuel4.value)" #fuel4>Other
               </label>
             </div>
           </div>
@@ -94,12 +94,12 @@
     </wizard-step>
 
 
-    <wizard-step [title]="'EXTRAS'" (onComplete)="onClickSubmit(from.value, to.value, passengers.value, date.value)">
+    <wizard-step [title]="'EXTRAS'" (onComplete)="onClickSubmit()">
       <div [ngSwitch]="isCompleted">
         <div *ngSwitchDefault>
           <div class="fieldBody">
             <div class="fieldElem">
-              <div class="form-group">
+              <!--<div class="form-group">
                 <label>Why don't you add a picture of yourself?</label>
                 <div class="form-check">
                   <label class="form-check-label">
@@ -121,16 +121,12 @@
                   <label>You have uploaded this picture</label>
                   <img [src]="pictureFile" alt="Picture of yourself">
                 </div>
-              </div>
+              </div>-->
               <div class="form-group">
                 <label>Anything else you would like to tell your carmates?</label>
-                <textarea class="form-control" type="text" id="exampleTextarea" rows="3" #text></textarea>
+                <textarea class="form-control" type="text" id="exampleTextarea" rows="3" [(ngModel)]="otherInfo" name="otherText"></textarea>
               </div>
             </div>
-          </div>
-          <div id="buttons">
-            <input type="reset" class="btn btn-danger" value="Reset form">
-            <button type="button" class="btn btn-info" (click)="onClickSave()" name="save" value="Save">Save</button>
           </div>
         </div>
         <div *ngSwitchCase="true">
