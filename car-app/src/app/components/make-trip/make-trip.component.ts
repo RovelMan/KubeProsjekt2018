@@ -126,36 +126,34 @@ export class MakeTripComponent implements OnInit {
     this.toDest = to;
     this.maxPassengers = passengers;
     this.date = date;
-    console.log(from, to, passengers, date);
+    if (!this.validateFields1()) {
+      this.flashMessage.show("Please fill all fields", { cssClass: 'alert-warning', timeout: 3000 });
+    }
   }
 
   setSecondField(model: string) {
     this.carModel = model;
-    console.log(model, this.animals, this.childSeat, this.baggageSpace, this.carFuel);
-  }
-
-  setThirdField(otherInfo: string) {
-    this.otherInfo = otherInfo;
-    console.log(this.otherInfo);
-    this.isCompleted = true;
+    if (!this.validateFields2()) {
+      this.flashMessage.show("Please fill all fields", { cssClass: 'alert-warning', timeout: 3000 });
+    }
   }
 
   setFuel(fuel: string) {
     this.carFuel = fuel;
   }
 
-  validateFields() {
+  validateFields1() {
     const trip = {
-      carModel: this.carModel,
-      carFuel: this.carFuel,
-      otherInfo: this.otherInfo,
-      animals: this.animals,
-      childSeat: this.childSeat,
-      baggageSpace: this.baggageSpace,
-      //pictureChoice: this.pictureChoice,
-      //pictureFile: this.pictureFile
+      fromDest:this.fromDest,
+      toDest: this.toDest
     }
-    return this.validateService.validateMakeTrip(trip);
+    return this.validateService.validateMakeTrip1(trip);
+  }
+  validateFields2() {
+    const trip = {
+      carModel: this.carModel
+    }
+    return this.validateService.validateMakeTrip2(trip);
   }
 
   /*onClickSave() {

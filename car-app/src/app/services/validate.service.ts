@@ -26,9 +26,16 @@ export class ValidateService {
   }
 
   //may be undefined even though it is there
-  validateMakeTrip(trip) {
-
-    if (trip.fromDest==undefined || trip.toDest==undefined || trip.maxPassengers==undefined || trip.date==undefined || trip.carModel==undefined || trip.carFuel==undefined || trip.pictureChoice==undefined || (trip.pictureChoice=="uploadFile" && trip.pictureFile==undefined)) { 
+  validateMakeTrip1(trip) {
+    if (trip.fromDest=="" || trip.toDest=="") { 
+      return false;
+    } else {
+      return true;
+    
+    }      
+  }
+  validateMakeTrip2(trip) {
+    if (trip.carModel=="") { 
       return false;
     } else {
       return true;
