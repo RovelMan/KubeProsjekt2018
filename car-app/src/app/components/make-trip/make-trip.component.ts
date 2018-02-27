@@ -7,6 +7,13 @@ import { TripHandlerService } from '../../services/trip-handler.service';
 import { AuthService } from '../../services/auth.service';
 
 import { NotificationsHandlerService } from '../../services/notifications-handler.service'
+import { AngularFireAuth } from 'angularfire2/auth';
+//import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs';
+import { User } from '../../../../models/user.model';
+import { AuthServiceChatService } from '../../services/auth-service-chat.service'
+
 
 @Component({
   selector: 'app-make-trip',
@@ -14,7 +21,7 @@ import { NotificationsHandlerService } from '../../services/notifications-handle
   styleUrls: ['./make-trip.component.css']
 })
 export class MakeTripComponent implements OnInit {
-
+  user: firebase.User;
   fromDest: String;
   toDest: String;
   maxPassengers: Number;
@@ -30,10 +37,11 @@ export class MakeTripComponent implements OnInit {
   pictureChoice: String;
   pictureFile: File;
 
-  user: Object;
+  
   userId: String;
 
   isCompleted: boolean;
+  key: String;
 
   constructor(
     private validateService: ValidateService,
@@ -42,67 +50,50 @@ export class MakeTripComponent implements OnInit {
     private route: ActivatedRoute,
     private tripHandlerService: TripHandlerService,
     private authService: AuthService,
-    private notificationsHandler: NotificationsHandlerService
+    private notificationsHandler: NotificationsHandlerService,
+    private afAuth: AngularFireAuth
 
   ) { }
 
   ngOnInit() {
+    this.afAuth.authState.subscribe(auth => {
+      if (auth !== undefined && auth !== null) {
+        this.user = auth;
+      }
+      
+    });
   }
 
   onClickSubmit(from: string, to: string, passengers: number, date: string) {
-    if (this.authService.loggedIn()) {
-      this.authService.getProfile().subscribe(profile => {
-        this.user = profile.user;
-        this.userId = profile.id;
-
-        const trip = {
-          from: from,
-          to: to,
-          maxPassengers: passengers,
-          date: date,
-          driverId: this.userId
-        }
-        // Register trip
-        this.tripHandlerService.addTrip(trip).subscribe(data => {
-          if (data.success) {
-            this.flashMessage.show("You have now added a trip to the cloud", { cssClass: 'alert-success', timeout: 3000 });
-            console.log(data.tripSaved._id);
-            this.addNotificationMadeTrip(data.tripSaved._id);
-            this.router.navigate(['/my-profile']);
-
-
-          } else {
-            this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
-            this.router.navigate(['/make-trip']);
-          }
-        });
-      },
-
-        //Uncertain if we need this error check, but think it's good practice.
-        err => {
-          console.log(err);
-          return false;
-        });
-    } else {
-      this.flashMessage.show("Not logged in!", { cssClass: 'alert-danger', timeout: 3000 });
+    const trip = {
+      from: from,
+      to: to,
+      fromTo: from+':'+to,
+      date: date,
+      maxPassengers: passengers,
+      driverId: this.user.uid,
+      passengerIds: [],
+      messages: []
     }
+    this.key = this.tripHandlerService.addTripFirebase(trip);
+    this.addNotificationMadeTrip();
+    const thisTripId = {
+      tripId: this.key
+    }
+    this.tripHandlerService.addTripToUser(thisTripId, 'driverTrips');
   }
-  addNotificationMadeTrip(tripId) {
+  
+  addNotificationMadeTrip() {
     const notification = {
       type: 'madeTrip',
-      userIds: [this.userId],
+      //userIds: [this.userId],
       date: Date.now(),
       data: {
-        tripId: tripId,
+        driverId: this.user.uid
       }
-    }
-    this.notificationsHandler.addNotification(notification).subscribe(data => {
-      if (data.success) {
-        this.flashMessage.show("You have now added a notification", { cssClass: 'alert-success', timeout: 3000 });
-      } else {
-        this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
-      }
-    });
+    }  
+    this.notificationsHandler.addNotificationFirebase(notification);
+
   }
 
 

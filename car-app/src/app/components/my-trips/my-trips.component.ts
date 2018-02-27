@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TripHandlerService } from '../../services/trip-handler.service';
 import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { Trip } from '../../../../models/trip.model';
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-my-trips',
@@ -9,85 +12,103 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./my-trips.component.css']
 })
 export class MyTripsComponent implements OnInit {
-
+  
   passengerId: String;
-  myTripsPassenger: any;
-  myTripsDriver: any;
-
+  myTripsPassenger: FirebaseObjectObservable<any>[] = [];
+  myTripsDriver: FirebaseObjectObservable<any>[] = [];
+  //test: Trip;
+  //ids: FirebaseListObservable<any[]>;
+  listOfIds: IterableIterator<any>;
+  myTripsDriverIds: any[];
+  myTripsPassengerIds: any[];
+  bool: boolean;
+  
   constructor(
-    private tripHandler: TripHandlerService, 
-    private authService: AuthService, 
+    private tripHandler: TripHandlerService,
+    private authService: AuthService,
     private flashMessage: FlashMessagesService
   ) { }
 
   ngOnInit() {
-    this.findMyTripsPassenger();
-    this.findMyTripsDriver();
+    
+    this.findTripsAsPassenger();
+    this.findTripsAsDriver();
+    
+    setTimeout(() => {
+      this.findTripsById(this.myTripsPassengerIds, this.myTripsPassenger);
+      this.findTripsById(this.myTripsDriverIds, this.myTripsDriver);
+    }, 1000);
+    
   }
 
-  findMyTripsPassenger() {
-    this.authService.getProfile().subscribe(profile => {
-      this.passengerId = profile.id;
-
-      const findMyTripsInput = {
-        passengerId: this.passengerId
-      }
-
-      this.tripHandler.findMyTripsAsPassenger(findMyTripsInput).subscribe(data => {
-        if (data.success) {
-
-          this.myTripsPassenger = data.tripsFound;
-        } else {
-          this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
-        }
-      });
-    },
-      //Uncertain if we need this error check, but think it's good practice.
-      err => {
-        console.log(err);
-        return false;
-      });
-
-
-  }
-
-
-  findMyTripsDriver() {
-    this.authService.getProfile().subscribe(profile => {
-      this.passengerId = profile.id;
-
-      const findMyTripsInput = {
-        passengerId: this.passengerId
-      }
-
-      this.tripHandler.findMyTripsAsDriver(findMyTripsInput).subscribe(data => {
-        if (data.success) {
-
-          this.myTripsDriver = data.tripsFound;
-        } else {
-          this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
-        }
-      });
-    },
-      //Uncertain if we need this error check, but think it's good practice.
-      err => {
-        console.log(err);
-        return false;
-      });
-  }
   deleteTrip(tripClickedId) {
     const deleteTripInput = {
-      tripId: tripClickedId
+      tripId: '-L6BUUUK11IvjVoai7ls'
     }
+    console.log('it is running');
+    this.tripHandler.deleteTrip(deleteTripInput)
+      .then()
+      .catch(err => console.log(err));
 
-    this.tripHandler.deleteTrip(deleteTripInput).subscribe(data => {
-      if (data.success) {
-        this.flashMessage.show("The trip was deleted.", {cssClass: 'alert-success', timeout: 3000});
-      } else {
-        this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
+  }
+  findTripsAsPassenger() {
+    this.tripHandler.findValuesInUserChildArray('passengerTrips').then(resolve => {
+      this.myTripsPassengerIds = resolve;
+    })
+      .catch(err => console.log(err)
+      );
+  }
+  findTripsAsDriver() {
+    this.tripHandler.findValuesInUserChildArray('driverTrips').then(resolve => {
+      this.myTripsDriverIds = resolve;
+      console.log(this.myTripsDriverIds);
+    })
+      .catch(err => console.log(err)
+      );
+  }
+  findTripsById(ids, array) {
+    for (let id of ids) {
+      id = {
+        tripId: id
       }
-    });
+      this.tripHandler.findTripById(id).subscribe(trip => {
+        array.push(trip);
+      });
+    } 
+  }
+
+  /*
+  waitUntil(check, onComplete, delay,timeout) {
+    // if the check returns true, execute onComplete immediately
+    if (check()) {
+        onComplete();
+        return;
+    }
+    
+    if (!delay) delay=100;
+  
+    var timeoutPointer;
+    var intervalPointer=setInterval(function () {
+        if (!check()) return; // if check didn't return true, means we need another check in the next interval
+  
+        // if the check returned true, means we're done here. clear the interval and the timeout and execute onComplete
+        clearInterval(intervalPointer);
+        if (timeoutPointer) clearTimeout(timeoutPointer);
+        onComplete();
+    },delay);
+    // if after timeout milliseconds function doesn't return true, abort
+    if (timeout) timeoutPointer=setTimeout(function () {
+        clearInterval(intervalPointer);
+    },timeout);
   }
   
-
+  check(): boolean {
+    console.log(this);
+   if (this.myTripsPassengerIds !== undefined) {
+     return false;
+   } else {
+     return true
+   }
+  }
+  */
 }

@@ -1,34 +1,37 @@
-<div class="aResult" *ngFor="let result of resultsArray">
+<div class="aResult" *ngFor="let result of trips | async">
   <div class="card border-success mb-3">
     <div class="card-header">
       <h5 class="card-title">{{result.from}} -> {{result.to}}</h5>
-      <p>There is room for {{result.maxPassengers-result.passengerIds.length}} passengers</p>
-      <div *ngFor="let id of result.passengerIds">
-        <p>Passengers ids: {{id}}</p>
-      </div>
+      <p *ngIf="result.passengerIds!=undefined">
+        There is room for {{result.maxPassengers}}
+        {{result.passengerIds}}
+        </p>
+        <!--<p *ngIf="result.passengerIds != undefined">There is room for {{result.maxPassengers-result.passengerIds.docs.length}} passengers</p> -->
+       
+      
     </div>
     <div class="card-body">
-      <button class="btn btn-info" [routerLink]="['/this-trip', {tripId: result._id}]">Select trip</button>
+      <button class="btn btn-info" [routerLink]="['/this-trip', {tripId: result.$key}]">Select trip</button>
       <h6>Send message to driver (only works if he has an id): id = {{result.driverId}}</h6>
       <button (click)="open({driverId: result.driverId, tripId: result._id}, content)">Send message</button>
     </div>
   </div>
-  
-  
+
+
 </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
-    <div class="modal-header">
-      <h4 class="modal-title">Message to the driver:</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-     <input type="text" #messageText>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c({text: messageText.value, func: 'send'})">Send</button>
-      <button type="button" class="btn btn-outline-dark" (click)="c({text: undefined, func: 'close'})">Close</button>
-    </div>
-  </ng-template>
+  <div class="modal-header">
+    <h4 class="modal-title">Message to the driver:</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <input type="text" #messageText>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c({text: messageText.value, func: 'send'})">Send</button>
+    <button type="button" class="btn btn-outline-dark" (click)="c({text: undefined, func: 'close'})">Close</button>
+  </div>
+</ng-template>
