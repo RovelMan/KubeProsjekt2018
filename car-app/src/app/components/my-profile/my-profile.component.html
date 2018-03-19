@@ -1,17 +1,13 @@
 <div *ngIf="user" class="jumbotron">
-  <h2 class = "page-header">
-    {{user.name}}
-  </h2>
+  
   <ul class = "list-group">
     <li class = "list-group-item">
-      Username: {{user.username}}
+      Display Name: {{name}}
     </li>
     <li class = "list-group-item">
-      Email: {{user.email}}
+      Email: {{userEmail}}
     </li>
     <app-messages></app-messages>
-    <li>
-      <button (click)="deleteUserProfile()">Delete this profile</button>
-    </li>
   </ul>
+  <app-notifications></app-notifications>
 </div>

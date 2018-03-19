@@ -19,6 +19,6 @@ export class LoginChatComponent {
     console.log('login() called from login-form component');
     this.authServiceChat.login(this.email, this.password)
     .catch(error => this.errorMsg = error.message);
-    this.router.navigate(['/chat'])
+    
   }
 }

@@ -1,21 +1,18 @@
 
-<div class="container">
-    <div class="loginCard">
-      <h2 class="heading">Log In</h2>
-        <input 
+  <form class="loginForm" (submit)="login()">
+    <div class="form-group">
+
+      <input 
           [(ngModel)]="email"
           type="email" 
           name="email" 
           class="formInput" />
-        <input type="password" 
-          [(ngModel)]="password"
-          name="password" 
-          class="formInput" />
-        <button class="btn" 
-                id="btn-login" 
-                
-                (click)="login()">
-                Log In
-        </button>
     </div>
-  </div>
+    <div class="form-group">
+        <input type="password" 
+        [(ngModel)]="password"
+        name="password" 
+        class="formInput" />
+    </div>
+    <input type="submit" class="btn btn-primary" value="Login">
+  </form>

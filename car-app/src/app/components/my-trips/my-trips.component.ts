@@ -30,14 +30,11 @@ export class MyTripsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
-    this.findTripsAsPassenger();
-    this.findTripsAsDriver();
-    
-    setTimeout(() => {
-      this.findTripsById(this.myTripsPassengerIds, this.myTripsPassenger);
-      this.findTripsById(this.myTripsDriverIds, this.myTripsDriver);
-    }, 1000);
+    this.tripHandler.getUser();
+    setTimeout(() => {
+      this.findTripsAsPassenger();
+      this.findTripsAsDriver();
+    },600)
     
   }
 
@@ -49,19 +46,18 @@ export class MyTripsComponent implements OnInit {
     this.tripHandler.deleteTrip(deleteTripInput)
       .then()
       .catch(err => console.log(err));
-
   }
   findTripsAsPassenger() {
     this.tripHandler.findValuesInUserChildArray('passengerTrips').then(resolve => {
       this.myTripsPassengerIds = resolve;
+      this.findTripsById(this.myTripsPassengerIds, this.myTripsPassenger);
     })
-      .catch(err => console.log(err)
-      );
+      .catch(err => console.log(err));
   }
   findTripsAsDriver() {
     this.tripHandler.findValuesInUserChildArray('driverTrips').then(resolve => {
       this.myTripsDriverIds = resolve;
-      console.log(this.myTripsDriverIds);
+      this.findTripsById(this.myTripsDriverIds, this.myTripsDriver);
     })
       .catch(err => console.log(err)
       );

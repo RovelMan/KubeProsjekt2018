@@ -34,6 +34,15 @@ export class TripHandlerService {
           console.log('hooray'); }
     });
   }
+
+  getUser() {
+    if (this.user) {
+      return this.user;
+    } else
+    setTimeout(() => {
+      this.getUser();
+    }, 1);
+  }
  //Firebase
   getTrips(): FirebaseListObservable<Notification[]> {
     const path = `/trips/`;

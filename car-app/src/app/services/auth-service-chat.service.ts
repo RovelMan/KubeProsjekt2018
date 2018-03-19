@@ -30,7 +30,7 @@ export class AuthServiceChatService {
     .then((user) => {
       this.authState = user;
       this.setUserStatus('online');
-      this.router.navigate(['chat']);
+      this.router.navigate(['/my-trips']);
     });
   }
 
@@ -45,14 +45,35 @@ export class AuthServiceChatService {
   }
 
   setUserData(email: string, status: string, displayName: string): void {
+    
+    //set Status
     const path = `users/${this.currentUserId}`;
     const data = {
-      email: email,
-      displayName: displayName,
       status: status
     }
     this.db.object(path).update(data)
     .catch(error => console.log(error));
+    
+    //set DisplayName and photourl
+    firebase.auth().currentUser.updateProfile( {
+      displayName: displayName,
+      photoURL: "" //must have photoURL with this function.
+    }).then(function() {
+      // Update successful.
+    }).catch(function(error) {
+      // An error happened.
+    });
+    
+    //set email
+    firebase.auth().currentUser.updateEmail(email).then(function() {
+      // Update successful.
+    }).catch(function(error) {
+      // An error happened.
+    });
+    
+    
+
+
   }
 
   setUserStatus(status: string): void {
@@ -68,6 +89,17 @@ export class AuthServiceChatService {
   }
   logout() {
     this.afAuth.auth.signOut();
+  }
+  
+  loggedIn() : Observable<boolean> {
+    return Observable.from(this.afAuth.authState)
+      .take(1)
+      .map(state => !!state)
+      .do(authenticated => { 
+        if (!authenticated) {
+          return false;
+        }
+      } );
   }
 
 
