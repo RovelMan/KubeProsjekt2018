@@ -68,7 +68,6 @@ export class MakeTripComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.mapsAPILoader.load().then(() => {
       let autocompleteOne = new google.maps.places.Autocomplete(this.searchFromElementRef.nativeElement, {
         types: ["geocode"]
@@ -76,7 +75,7 @@ export class MakeTripComponent implements OnInit {
       let autocompleteTwo = new google.maps.places.Autocomplete(this.searchToElementRef.nativeElement, {
         types: ["geocode"]
       });
-
+    });
     this.afAuth.authState.subscribe(auth => {
       if (auth !== undefined && auth !== null) {
         this.user = auth;
@@ -204,22 +203,6 @@ export class MakeTripComponent implements OnInit {
       const element = document.querySelector("#" + f)
       if (element) element.scrollIntoView()
     });
-  }
-
-  changePath() {
-    const trip = {
-
-      carModel: this.carModel,
-      carFuel: this.carFuel,
-      otherInfo: this.otherInfo,
-
-      animals: this.animals,
-      childSeat: this.childSeat,
-      baggageSpace: this.baggageSpace,
-      pictureChoice: this.pictureChoice,
-      pictureFile: this.pictureFile
-    }
-    console.log('before if')
   }
 }
 
