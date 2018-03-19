@@ -10,31 +10,33 @@
       </li>
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item ">
         <a class="nav-link" [routerLink]="['/make-trip']">Make a trip<span class="sr-only">(current)</span></a>
+        <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item ">
+          <a class="nav-link" [routerLink]="['/chat']">Chat<span class="sr-only">(current)</span></a>
       </li>
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item ">
         <a class="nav-link" [routerLink]="['/search-trip']">Find a trip<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <ul class=" nav navbar-nav ml-auto  ">
-      <li *ngIf = "authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item">
+      <li *ngIf = "(user|async)?.uid" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item">
           <a class="nav-link" [routerLink]="['/my-trips']">My trips <span class="sr-only">(current)</span></a>
       </li>
-      <li *ngIf = "authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item">
+      <li *ngIf = "(user|async)?.uid" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item">
           <a class="nav-link" [routerLink]="['/my-profile']">My profile <span class="sr-only">(current)</span></a>
       </li>
-      <li *ngIf = "!authService.loggedIn()" class="nav-item">
+      <li *ngIf = "!(user|async)?.uid" class="nav-item">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Login<span class="sr-only">(current)</span></a>
         <div id="drop" class="dropdown-menu dropdown-menu-right">
-          <app-login></app-login>
+          <app-login-chat></app-login-chat>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/register']" >New around here? Register</a>
+          <a class="dropdown-item" [routerLink]="['/signup-form-chat']" >New around here? Register</a>
         </div>
       </li>
-      <li *ngIf = "!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item">
-          <a class="nav-link"[routerLink]="['/register']">Register<span class="sr-only">(current)</span></a>
+      <li *ngIf = "!(user|async)?.uid" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item">
+          <a class="nav-link"[routerLink]="['/signup-form-chat']">Register<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item" *ngIf = "authService.loggedIn()">
-        <a class="nav-link" (click)="onLogoutClick()" href="#">Logout<span class="sr-only">(current)</span></a>
+      <li class="nav-item" *ngIf = "(user|async)?.uid">
+        <a class="nav-link" (click)="onLogoutClick()">Logout<span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>

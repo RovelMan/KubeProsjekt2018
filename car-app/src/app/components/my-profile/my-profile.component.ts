@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { UserHandlerService } from '../../services/user-handler.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { AuthServiceChatService } from '../../services/auth-service-chat.service';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs';
+import { Profile } from 'selenium-webdriver/firefox';
 
 @Component({
   selector: 'app-my-profile',
@@ -11,36 +13,24 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class MyProfileComponent implements OnInit {
 
-  user: Object;
+  user: Observable<firebase.User>;
+  userEmail: string;
+  name: string;
 
   constructor(
-    private authService:AuthService, 
-    private router:Router,
-    private userHandler: UserHandlerService,
+    private authServiceChat: AuthServiceChatService,
+    private router: Router,
     private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
-    this.authService.getProfile().subscribe(profile => {
-      this.user = profile.user;
-    },
-    err => {
-      console.log(err);
-      return false;
-    });
+    if (this.authServiceChat.authUser !== undefined) {
+      this.user = this.authServiceChat.authUser();
+      this.user.subscribe(user => {
+        if (user) {
+          this.userEmail = user.email;
+          this.name = user.displayName;
+        }
+      });
+    }
   }
-
-  deleteUserProfile() {
-    this.userHandler.deleteUserProfile(this.user).subscribe(data => {
-      if (data.success) {
-        this.authService.logout();
-        this.flashMessage.show("Your profile has been deleted.", {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/']);
-        return false;
-      } else {
-        this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
-      }
-    });
-
-  }
-
 }

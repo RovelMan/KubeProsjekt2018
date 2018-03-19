@@ -28,6 +28,8 @@
     "angular2-flash-messages": "^2.0.5",
     "angular2-jwt": "^0.2.3",
     "angular2-wizard": "^0.4.0",
+    "angularfire2": "5.0.0-rc.4",
+    "firebase": "4.8.2",
     "bcryptjs": "*",
     "body-parser": "*",
     "core-js": "^2.4.1",

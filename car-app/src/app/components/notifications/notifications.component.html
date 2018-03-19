@@ -1,10 +1,8 @@
 <div class= "jumbotron">
-  <div *ngFor="let notification of myNotifications">
-    <ul>
-    <div *ngIf="notification.type == 'madeTrip'">
-      <li>You have made a trip! Date: {{notification.date | date: 'medium'}}</li>
-    </div>
-    </ul>
-    
+  <button (click)="addNotificationFirebase()">Add not. firebase</button> 
+
+  <div *ngFor="let notification of notifications | async">
+    hei
+    <app-notification [notification]=notification></app-notification>
   </div>
 </div>

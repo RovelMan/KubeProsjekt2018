@@ -21,32 +21,17 @@
   <table class="table">
     <tbody>
       <tr class="table-success">
-        <div *ngFor="let passenger of theTrip.passengerIds; let i = index">
+        <div *ngIf="passengerIds">
+        <div *ngFor="let passenger of passengerIds; let i = index">
           <th scope="row">Passenger {{i + 1}}</th>
-          <td>{{passenger}}</td>
-        </div>
+          <td>{{passenger}}</td> 
+        </div> 
+        Hi
+      </div>
       </tr>
     </tbody>
   </table>
-
-  <button class="btn btn-info" [routerLink]="['/my-trips']" (click)="joinTrip(theTrip._id)">Join</button>
-
+ 
+  <button class="btn btn-info"  [routerLink]="['/my-trips']" (click)="joinTrip(theTrip.$key)">Join</button>
+ <div *ngIf="passengerIds && (theTrip.maxPassengers-passengerIds.length<1)">This trip is full</div>
 </div>
-
-<!--
-<div class="aResult" *ngFor="let result of resultsArray">
-    <div class="card border-success mb-3">
-      <div class="card-header">
-        <h5 class="card-title">{{result.from}} -> {{result.to}}</h5>
-        <p></p>
-        <div *ngFor="let id of result.passengerIds">
-          <p>Passengers ids: {{id}}</p>
-        </div>
-      </div>
-      <div class="card-body">
-        <button class="btn btn-info" [routerLink]="['/this-trip', {tripId: result._id}]">Select trip</button>
-      </div>
-    </div>
-  </div>
-
--->

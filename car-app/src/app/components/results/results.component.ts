@@ -18,7 +18,7 @@ export class ResultsComponent implements OnChanges {
   selectedTripDriverId: string;
   closeResult: string;
   selectedTripId: string;
-
+  trips: any;
 
   constructor(
     private tripHandler: TripHandlerService,
@@ -55,16 +55,10 @@ export class ResultsComponent implements OnChanges {
       from: trip.fromText,
       to: trip.toText
     }
-    this.tripHandler.findTripFromDest(thisTrip).subscribe(data => {
-      if (data.success) {
-        this.flashMessage.show("You have now found all available trips", { cssClass: 'alert-success', timeout: 3000 });
-        this.resultsArray = data.tripsFound;
-        console.log("Inside", this.resultsArray);
-      } else {
-        this.flashMessage.show("Something went wrong", { cssClass: 'alert-danger', timeout: 3000 });
-      }
-    });
+    this.trips = this.tripHandler.findTripFromDestToDest(thisTrip);
+    console.log(this.trips);
   }
+  
 
 
   sendMessageToDriver(messageText) {

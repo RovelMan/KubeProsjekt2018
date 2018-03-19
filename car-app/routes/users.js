@@ -70,4 +70,4 @@ router.post('/deleteprofile', (req, res, next) => {
   User.deleteProfile(user, res, (err) = { })
 });
 
-module.exports = router;
+module.exports = router; 

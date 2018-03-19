@@ -36,6 +36,27 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgbModal, ModalDismissReasons, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { NotificationsHandlerService } from './services/notifications-handler.service';
+import { ChatroomComponent } from './components/chatroom/chatroom.component';
+import { ChatFormComponent } from './components/chat-form/chat-form.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { MessageComponent } from './components/message/message.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserItemComponent } from './components/user-item/user-item.component';
+import { ChatService } from './services/chat.service';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database-deprecated';
+import { SignupFormChatComponent } from './components/signup-form-chat/signup-form-chat.component';
+import { AuthServiceChatService } from './services/auth-service-chat.service';
+import { LoginChatComponent } from './components/login-chat/login-chat.component';
+import { NavbarChatComponent } from './components/navbar-chat/navbar-chat.component';
+import { NotificationComponent } from './components/notification/notification.component';
+
+
 
 const appRoutes: Routes = [
   {path:'', component: HomeComponent}, //må sørge for at alle sider blir ført hit
@@ -45,7 +66,10 @@ const appRoutes: Routes = [
   {path:'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]},
   {path:'make-trip', component: MakeTripComponent},
   {path:'search-trip', component: SearchTripsComponent},
-  {path:'this-trip', component: ThisTripComponent}
+  {path:'this-trip', component: ThisTripComponent},
+  {path:'chat', component: ChatroomComponent},
+  {path: 'signup-form-chat', component: SignupFormChatComponent},
+  {path: 'login-chat', component: LoginChatComponent}
 ]
 
 @NgModule({
@@ -66,6 +90,16 @@ const appRoutes: Routes = [
     FilterComponent,
     MessagesComponent,
     NotificationsComponent,
+    ChatroomComponent,
+    ChatFormComponent,
+    FeedComponent,
+    MessageComponent,
+    UserListComponent,
+    UserItemComponent,
+    SignupFormChatComponent,
+    LoginChatComponent,
+    NavbarChatComponent,
+    NotificationComponent,
     
     
   ],
@@ -82,10 +116,17 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormWizardModule,
     BrowserAnimationsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AngularFireAuthModule,
+    
+    AngularFireModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    HttpClientModule,
+    AngularFireDatabaseModule,
+    
   ],
   
-  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, MessagesHandlerService, NgbModal, NotificationsHandlerService],
+  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, MessagesHandlerService, NgbModal, NotificationsHandlerService, ChatService, AngularFireDatabase, AuthServiceChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

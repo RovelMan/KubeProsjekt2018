@@ -1,0 +1,18 @@
+
+  <form class="loginForm" (submit)="login()">
+    <div class="form-group">
+
+      <input 
+          [(ngModel)]="email"
+          type="email" 
+          name="email" 
+          class="formInput" />
+    </div>
+    <div class="form-group">
+        <input type="password" 
+        [(ngModel)]="password"
+        name="password" 
+        class="formInput" />
+    </div>
+    <input type="submit" class="btn btn-primary" value="Login">
+  </form>

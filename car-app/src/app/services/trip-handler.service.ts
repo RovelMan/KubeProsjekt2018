@@ -1,61 +1,123 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Http, Headers } from '@angular/http';
-
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs';
+import { User } from '../../../models/user.model';
+import { AuthServiceChatService } from './auth-service-chat.service'
+import { Trip } from '../../../models/trip.model';
+import { Router } from '@angular/router';
+import { snapshotChanges } from 'angularfire2/database';
 @Injectable()
 export class TripHandlerService {
-  trip: any;
+  
   id: String;
-  constructor(private http:Http) { }
+  trips: FirebaseListObservable<Notification[]>;
+  trip: Trip;
+  user: firebase.User;
+  passengerIds: any;
+  driverTrips: any;
+  firebaseTrips: FirebaseListObservable<Trip[]>;
+  firebaseTrip: Trip;
 
-  addTrip(trip){
-    console.log('In service-trip-handler');
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/trips/addtrip', trip, {headers: headers})
-      .map(res => res.json());
+
+  constructor( private afAuth: AngularFireAuth, 
+    private db: AngularFireDatabase, 
+    private router: Router,
+    private http: Http,
+    private authServiceChat: AuthServiceChatService) {
+      this.afAuth.authState.subscribe(auth => {
+        if (auth !== undefined && auth !== null) {
+          this.user = auth;
+          console.log('hooray'); }
+    });
   }
 
-  findTripFromDest(trip){
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/trips/findtrips', trip, {headers: headers}) 
-      .map(res => res.json());
+  getUser() {
+    if (this.user) {
+      return this.user;
+    } else
+    setTimeout(() => {
+      this.getUser();
+    }, 1);
+  }
+ //Firebase
+  getTrips(): FirebaseListObservable<Notification[]> {
+    const path = `/trips/`;
+    console.log('fetching trip in triphandler');
+    // query to create our message feed binding
+    return this.db.list(path);
+    
+    
+  }
+  
+  addTripFirebase(trip) : String {
+    
+    const path = `/trips`;
+    this.trips = this.getTrips();
+    var newRef = this.trips.push(trip);
+    return newRef.key;
   }
 
-  findMyTripsAsPassenger(findMyTripsInput) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/trips/findmytripsaspassenger', findMyTripsInput, {headers: headers}) 
-      .map(res => res.json());
+  findTripFromDestToDest(trip){
+    const path = `/trips/`;
+    return this.db.list(path, {query: {orderByChild: 'fromTo', equalTo: trip.from+':'+trip.to}});
+    
   }
 
-  findMyTripsAsDriver(findMyTripsInput) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/trips/findmytripsasdriver', findMyTripsInput, {headers: headers}) 
-      .map(res => res.json());
+  findTripById(id) {
+    const path = `/trips/${id.tripId}`; 
+    return this.db.object(path);
+
   }
 
-  findMyTripById(findTripInput) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/trips/findtripbyid', findTripInput, {headers: headers}) 
-      .map(res => res.json());
+  joinTrip(id): void {
+    
+    const path = `/trips/${id.tripId}/passengerIds/`;
+    this.passengerIds = this.db.list(path);
+    this.passengerIds.push(this.user.uid);
+    this.addTripToUser(id, 'passengerTrips');
+  }
+  deleteTrip(id): Promise<void> {
+    const path = `/trips/${id.tripId}`;
+    return this.db.object(path).remove();
   }
 
-  joinTrip(joinTripInput) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/trips/jointrip', joinTripInput, {headers: headers}) 
-      .map(res => res.json());
+  findValuesInUserChildArray(child) {
+    const path=`/users/${this.user.uid}/${child}/`;
+    return firebase.database().ref(path).once('value').then(function(snapshot) {
+      let returnArr = [];
+      snapshot.forEach(childSnapshot => {
+        let item = childSnapshot.val(); 
+        //item.key = childSnapshot.key;
+        returnArr.push(item);
+    });
+      console.log(returnArr);
+      return returnArr;
+    })
   }
 
-  deleteTrip(deleteTripInput) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/trips/deletetrip', deleteTripInput, {headers: headers}) 
-      .map(res => res.json());
+  addTripToUser(trip, tripType) {
+    const path = `/users/${this.user.uid}/${tripType}/`;
+    this.driverTrips = this.db.list(path);
+    this.driverTrips.push(trip.tripId);
   }
 
+  findValuesInTripChildArray(child, key) {
+    const path=`/trips/${key}/${child}/`;
+    return firebase.database().ref(path).once('value').then(function(snapshot) {
+      let returnArr = [];
+      snapshot.forEach(childSnapshot => {
+        let item = childSnapshot.val(); 
+        //item.key = childSnapshot.key;
+        returnArr.push(item);
+    });
+      console.log(returnArr);
+      return returnArr;
+    })
+  }
+
+  
 }

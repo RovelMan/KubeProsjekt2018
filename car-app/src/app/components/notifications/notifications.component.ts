@@ -1,28 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { NotificationsHandlerService } from '../../services/notifications-handler.service';
 import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+
+import { Observable } from 'rxjs/observable';
+import { FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { Notification } from '../../../../models/notification.model';
+import * as firebase from 'firebase/app';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthServiceChatService } from '../../services/auth-service-chat.service';
+
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.css']
 })
-export class NotificationsComponent implements OnInit {
+export class NotificationsComponent implements OnInit, OnChanges {
   userId: String;
   myNotifications: any = [];
+  notifications: FirebaseListObservable<Notification[]>;
+  user: firebase.User
 
   constructor(
     private notificationsHandler: NotificationsHandlerService,
     private authService: AuthService,
-    private flashMessage: FlashMessagesService
-  ) { }
+    private flashMessage: FlashMessagesService,
+    private afAuth: AngularFireAuth,
+    private authServiceChat: AuthServiceChatService
+  ) { 
+    
+  }
 
   ngOnInit() {
     if (this.authService.loggedIn()) {
       this.fetchNotifications();
-    }
-    
+    };
+    setTimeout(() => {this.notifications = this.notificationsHandler.getNotifications()}, 1000); // Not a viable solution, but works for now.
   }
+  ngOnChanges() {
+    this.notifications=this.notificationsHandler.getNotifications();
+
+  } 
+
 
   fetchNotifications() {
 
@@ -46,11 +65,20 @@ export class NotificationsComponent implements OnInit {
         console.log(err);
         return false;
       });
-
-
   }
 
+  addNotificationFirebase() {
+    const notification = {
+      type: 'madeTrip',
+      //userIds: [this.userId],
+      date: Date.now(),
+      data: {
+        text: 'hello there'
+      }
+    }  
+    this.notificationsHandler.addNotificationFirebase(notification);
 
+  }
 
 
 
