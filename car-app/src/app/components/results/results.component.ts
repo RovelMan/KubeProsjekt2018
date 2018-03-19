@@ -2,7 +2,7 @@ import { Component, OnChanges, ElementRef, NgZone, Input } from '@angular/core';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { TripHandlerService } from '../../services/trip-handler.service';
 import { AuthService } from '../../services/auth.service';
-import { MessagesHandlerService  } from '../../services/messages-handler.service'
+
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -24,7 +24,7 @@ export class ResultsComponent implements OnChanges {
     private tripHandler: TripHandlerService,
     private flashMessage: FlashMessagesService,
     private authService: AuthService,
-    private messageHandler: MessagesHandlerService,
+    
     private modalService: NgbModal
 
   ) { }
@@ -61,23 +61,7 @@ export class ResultsComponent implements OnChanges {
   
 
 
-  sendMessageToDriver(messageText) {
-    console.log(messageText);
-    const message = {
-      senderId: this.passengerId,
-      receiverId: this.selectedTripDriverId,
-      messageText: messageText,
-      date: Date.now()
-    }
-    console.log(message);
-    this.messageHandler.addMessage(message).subscribe(data => {
-      if (data.success) {
-        this.flashMessage.show('Message has been sent', { cssClass: 'alert-success', timeout: 3000 });
-      } else {
-        this.flashMessage.show('Something went wrong in add message', { cssClass: 'alert-danger', timeout: 3000 });
-      }
-    });
-  }
+  
 
   open(thisTrip, content) {
     this.selectedTripDriverId = thisTrip.driverId;
@@ -87,7 +71,7 @@ export class ResultsComponent implements OnChanges {
       this.closeResult = `Closed with: ${result}`;
       if (result.text!=undefined && result.text!="") {
         console.log(result.text);
-        this.sendMessageToDriver(result.text); //not working
+        
       } else if (result.text==''){
         this.flashMessage.show('You cannot send an empty message', {cssClass: 'alert-warning', timeout: 3000});
       }

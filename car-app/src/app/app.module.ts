@@ -28,8 +28,6 @@ import { TripHandlerService } from './services/trip-handler.service';
 import { ResultsComponent } from './components/results/results.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { UserHandlerService } from './services/user-handler.service';
-import { MessagesComponent } from './components/messages/messages.component';
-import { MessagesHandlerService } from './services/messages-handler.service';
 
 import { FormWizardModule } from 'angular2-wizard';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -67,7 +65,7 @@ const appRoutes: Routes = [
   {path:'make-trip', component: MakeTripComponent},
   {path:'search-trip', component: SearchTripsComponent},
   {path:'this-trip', component: ThisTripComponent},
-  {path:'chat', component: ChatroomComponent},
+  {path:'chat', component: ChatroomComponent, canActivate: [AuthGuard]},
   {path: 'signup-form-chat', component: SignupFormChatComponent},
   {path: 'login-chat', component: LoginChatComponent}
 ]
@@ -88,7 +86,6 @@ const appRoutes: Routes = [
     MapComponent,
     ResultsComponent,
     FilterComponent,
-    MessagesComponent,
     NotificationsComponent,
     ChatroomComponent,
     ChatFormComponent,
@@ -126,7 +123,7 @@ const appRoutes: Routes = [
     
   ],
   
-  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, MessagesHandlerService, NgbModal, NotificationsHandlerService, ChatService, AngularFireDatabase, AuthServiceChatService],
+  providers: [ValidateService, AuthService, AuthGuard, TripHandlerService, UserHandlerService, NgbModal, NotificationsHandlerService, ChatService, AngularFireDatabase, AuthServiceChatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

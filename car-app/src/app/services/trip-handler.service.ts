@@ -94,7 +94,6 @@ export class TripHandlerService {
         //item.key = childSnapshot.key;
         returnArr.push(item);
     });
-      console.log(returnArr);
       return returnArr;
     })
   }
@@ -114,7 +113,6 @@ export class TripHandlerService {
         //item.key = childSnapshot.key;
         returnArr.push(item);
     });
-      console.log(returnArr);
       return returnArr;
     })
   }

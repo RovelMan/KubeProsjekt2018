@@ -41,7 +41,9 @@ export class AuthServiceChatService {
       this.authState = user;
       const status = 'online';
       this.setUserData(email, password, displayName);
-    }).catch(error => console.log(error));
+      this.router.navigate(['/my-profile']); //only when the signUp is a success we sign in.
+    }).catch(error => {console.log(error);
+    return error});
   }
 
   setUserData(email: string, status: string, displayName: string): void {

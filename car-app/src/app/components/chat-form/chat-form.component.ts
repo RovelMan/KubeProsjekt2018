@@ -12,8 +12,11 @@ export class ChatFormComponent implements OnInit {
   ngOnInit() {
   }
   send() {
-    this.chat.sendMessage(this.message);
-    this.message = '';
+    if (this.message) {
+      this.chat.sendMessage(this.message);
+      this.message = '';
+    }
+    
   }
   handleSubmit(event) {
     if (event.keyCode === 13) {
